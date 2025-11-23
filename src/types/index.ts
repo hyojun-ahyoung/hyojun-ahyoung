@@ -25,6 +25,7 @@ export interface PersonInfo {
 
 export interface VenueInfo {
   name: string;
+  city?: string;
   address: string;
   floor?: string;
   hall?: string;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
+import { SplashScreen } from "@/components/ui/SplashScreen";
 
 const notoSansKr = Noto_Sans_KR({
   weight: ["300", "400", "500", "700"],
@@ -43,7 +44,12 @@ export default function RootLayout({
       <body
         className={`${notoSansKr.variable} ${notoSerifKr.variable} font-sans antialiased`}
       >
-        {children}
+        <SplashScreen />
+        <div className="min-h-screen w-full flex justify-center bg-gray-50">
+          <div className="w-full min-w-[360px] max-w-[440px] bg-white shadow-xl">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );
