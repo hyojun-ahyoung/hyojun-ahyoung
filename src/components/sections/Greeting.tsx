@@ -7,28 +7,24 @@ export function Greeting() {
   const { groom, bride } = WEDDING_INFO;
 
   return (
-    <section className="relative w-full py-16 flex items-center justify-center">
-      {/* 배경 SVG */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: "50%",
-          width: "100vw",
-          marginLeft: "-50vw",
-          backgroundImage: "url(/background.svg)",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "100% 100%",
-          zIndex: 0,
-        }}
-      />
-
+    <section
+      style={{
+        width: "100vw",
+        marginLeft: "calc(50% - 50vw)",
+        backgroundColor: "#ffffff",
+        backgroundImage: "url(/background.png)",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "100% 100%",
+      }}
+    >
       {/* 컨텐츠 */}
-      <div className="relative z-10 max-w-md w-full flex flex-col items-center text-center px-6">
+      <div
+        className="relative z-10 max-w-md w-full flex flex-col items-center text-center px-6"
+        style={{ paddingTop: "54px", paddingBottom: "54px" }}
+      >
         {/* 인사말 텍스트 */}
-        <div className="mb-12 space-y-4">
+        <div>
           <p
             className="text-gray-800 text-center"
             style={{
@@ -45,12 +41,12 @@ export function Greeting() {
             <br />
             코알라보다 오래 붙어 있었습니다.
             <br />
-            호주 한바퀴를 돌며 쌓은 추억서점
+            호주 한바퀴를 돌며 쌓은 추억처럼
             <br />
             이제 인생의 로드트립을 함께 시작하려 합니다.
           </p>
 
-          <div className="py-6" />
+          <div className="h-6" />
 
           <p
             className="text-gray-800 text-center"
@@ -66,7 +62,7 @@ export function Greeting() {
             <br />
             나침반이 저희를 안내할 것입니다.
             <br />
-            복잡 다둥한 마음으로 오시서
+            부디 따뜻한 마음으로 오셔서
             <br />
             저희의 시작을 축복해 주신다면
             <br />
@@ -77,11 +73,12 @@ export function Greeting() {
         </div>
 
         {/* 일러스트 이미지 영역 */}
-        <div className="w-full max-w-xs mb-12 flex items-center justify-center relative aspect-square">
+        <div className="w-36 h-36 flex items-center justify-center">
           <Image
-            src="/greeting.svg"
+            src="/images/greeting.png"
             alt="Wedding Illustration"
-            fill
+            width={144}
+            height={144}
             className="object-contain"
           />
         </div>
