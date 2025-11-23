@@ -26,10 +26,11 @@ function MainContent() {
       <div className="relative z-10 w-full flex flex-col items-center">
         <Hero guestName={name} polite={polite} />
         <Greeting />
+        <Calendar />
+
         {/* <DdayCounter />
         <CoupleInfo polite={polite} />
         <DateTime />
-        <Calendar />
         <Gallery />
         <Timeline />
         <Location />
