@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { SnowEffect } from "@/components/ui/SnowEffect";
 import { Hero } from "@/components/sections/Hero";
+import { Greeting } from "@/components/sections/Greeting";
 import { DdayCounter } from "@/components/sections/DdayCounter";
 import { CoupleInfo } from "@/components/sections/CoupleInfo";
 import { DateTime } from "@/components/sections/DateTime";
@@ -24,21 +25,22 @@ function MainContent() {
       {/* 메인 콘텐츠 */}
       <div className="relative z-10 w-full flex flex-col items-center">
         <Hero guestName={name} polite={polite} />
-        <DdayCounter />
+        <Greeting />
+        {/* <DdayCounter />
         <CoupleInfo polite={polite} />
         <DateTime />
         <Calendar />
         <Gallery />
         <Timeline />
         <Location />
-        <Account />
+        <Account /> */}
 
         {/* 푸터 */}
-        <footer className="w-full py-16 px-6 text-center">
+        {/* <footer className="w-full py-16 px-6 text-center">
           <p className="text-sm sm:text-base text-gray-500">
             Thank you for celebrating with us
           </p>
-        </footer>
+        </footer> */}
       </div>
     </>
   );

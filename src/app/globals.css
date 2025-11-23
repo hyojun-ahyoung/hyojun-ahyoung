@@ -25,12 +25,22 @@
   font-display: swap;
 }
 
+/* Nanum HaNaSonGeurSsi 폰트 */
+@font-face {
+  font-family: "Nanum HaNaSonGeurSsi";
+  src: url("/fonts/HaNaSonGeurSsi.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #fafafa;
   --foreground: #1f1f1f;
   --font-sans: var(--font-noto-sans);
   --font-serif: var(--font-noto-serif);
   --font-gamtan: "GamtanRoad Batang", serif;
+  --font-hanason: "Nanum HaNaSonGeurSsi", serif;
 }
 
 @theme inline {
