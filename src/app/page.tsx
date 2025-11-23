@@ -27,10 +27,13 @@ function MainContent() {
         <Hero guestName={name} polite={polite} />
         <Greeting />
         <Calendar />
-
-        {/* <DdayCounter />
-        <CoupleInfo polite={polite} />
+        <section className="h-10" />
+        <DdayCounter />
+        <section className="h-10" />
         <DateTime />
+        <section className="h-10" />
+
+        {/* <CoupleInfo polite={polite} />
         <Gallery />
         <Timeline />
         <Location />
