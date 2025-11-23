@@ -3,7 +3,7 @@
 /* GamtanRoad Batang 폰트 */
 @font-face {
   font-family: "GamtanRoad Batang";
-  src: url("/fonts/감탄로드바탕체 Regular.ttf") format("truetype");
+  src: url("/fonts/GamtanRoadBatang-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: "GamtanRoad Batang";
-  src: url("/fonts/감탄로드바탕체 Bold.ttf") format("truetype");
+  src: url("/fonts/GamtanRoadBatang-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: "GamtanRoad Batang";
-  src: url("/fonts/감탄로드바탕체 Thin.ttf") format("truetype");
+  src: url("/fonts/GamtanRoadBatang-Thin.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
