@@ -5,41 +5,57 @@ import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 
 export function SplashScreen() {
+  const [isFontsReady, setIsFontsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "";
 
   useEffect(() => {
-    // 1.5초 후 페이드아웃 시작
+    // 폰트 로드 대기
+    document.fonts.ready.then(() => {
+      setIsFontsReady(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isFontsReady) return;
+
+    // 폰트 로드 후 2초 뒤 페이드아웃 시작
     const fadeTimer = setTimeout(() => {
       setIsFadingOut(true);
     }, 2000);
 
-    // 2초 후 완전히 제거
+    // 2.5초 후 완전히 제거
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 4000);
+    }, 2500);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
-  }, []);
+  }, [isFontsReady]);
 
   if (!isVisible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-white/80 backdrop-blur-md transition-opacity duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
         isFadingOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* 팝업 콘텐츠 */}
+      {/* 딤 배경 - 폰트 로드 후 블러 적용 */}
       <div
-        className={`bg-white mx-5 w-full max-w-[400px] transform transition-all duration-500 ${
-          isFadingOut ? "scale-95 opacity-0" : "scale-100 opacity-100"
+        className={`absolute inset-0 transition-all duration-300 ${
+          isFontsReady ? "bg-white/80 backdrop-blur-md" : "bg-white"
         }`}
+      />
+      {/* 폰트 로드 전: 숨김 / 로드 후: 콘텐츠 페이드인 */}
+      <div
+        className={`relative z-10 bg-white mx-5 w-full max-w-[400px] transform transition-all duration-300 ${
+          isFontsReady ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        } ${isFadingOut ? "scale-95 opacity-0" : ""}`}
       >
         {/* splash.svg 배경 이미지 */}
         <div className="relative w-full py-10 px-6">
