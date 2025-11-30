@@ -35,14 +35,15 @@ export function Hero({ guestName, polite }: HeroProps) {
   };
 
   return (
-    <section className="relative w-full h-screen flex flex-col overflow-hidden">
+    <section className="relative w-full h-real-screen flex flex-col overflow-hidden">
       {/* 상단: 이미지 영역 */}
-      <div className="relative w-full flex-1 min-h-0">
+      <div className="w-full overflow-hidden">
         <Image
           src="/images/main.png"
           alt="Wedding Main"
-          fill
-          className="object-cover"
+          width={440}
+          height={600}
+          className="w-full h-auto"
           priority
         />
       </div>

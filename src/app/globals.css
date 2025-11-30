@@ -101,11 +101,13 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 모바일 뷰포트 높이 대응 */
-@supports (-webkit-touch-callout: none) {
-  .min-h-screen {
-    min-height: -webkit-fill-available;
-  }
+/* 모바일 뷰포트 높이 대응 - 초기 높이 고정 */
+:root {
+  --vh: 1vh;
+}
+
+.h-real-screen {
+  height: calc(var(--vh) * 100);
 }
 
 /* 스크롤바 스타일링 (데스크톱) */
