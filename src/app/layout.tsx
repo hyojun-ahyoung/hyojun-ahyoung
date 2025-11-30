@@ -4,6 +4,7 @@ import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 import { ViewportHeight } from "@/components/ui/ViewportHeight";
+import { BackgroundMusic } from "@/components/ui/BackgroundMusic";
 
 const notoSansKr = Noto_Sans_KR({
   weight: ["300", "400", "500", "700"],
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={`${notoSansKr.variable} ${notoSerifKr.variable} font-sans antialiased`}
       >
         <ViewportHeight />
+        <BackgroundMusic />
         <Suspense fallback={null}>
           <SplashScreen />
         </Suspense>
