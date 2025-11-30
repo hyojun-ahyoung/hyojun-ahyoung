@@ -43,13 +43,7 @@ function MainContent() {
 export default function Home() {
   return (
     <div className="flex flex-col items-center pb-24">
-      <Suspense
-        fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            Loading...
-          </div>
-        }
-      >
+      <Suspense fallback={null}>
         <MainContent />
       </Suspense>
     </div>
