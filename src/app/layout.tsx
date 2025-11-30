@@ -45,11 +45,11 @@ export default function RootLayout({
       <body
         className={`${notoSansKr.variable} ${notoSerifKr.variable} font-sans antialiased`}
       >
+        <Suspense fallback={null}>
+          <SplashScreen />
+        </Suspense>
         <div className="min-h-screen w-full flex justify-center bg-gray-50">
-          <div className="relative w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
-            <Suspense fallback={null}>
-              <SplashScreen />
-            </Suspense>
+          <div className="w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
             {children}
           </div>
         </div>
