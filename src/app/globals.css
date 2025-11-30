@@ -52,8 +52,6 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
   /* 확대/축소 방지 (더블탭 줌 포함) */
   touch-action: pan-y;
   -ms-touch-action: pan-y;

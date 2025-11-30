@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { WEDDING_INFO } from "@/constants/wedding-info";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     kakao: any;
   }
 }
@@ -16,9 +16,8 @@ export function Location() {
   const mapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 카카오맵 스크립트 로드
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_APP_KEY&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=a9b09af0d54b6ab41658e98244aea8c6&autoload=false`;
     script.async = true;
     document.head.appendChild(script);
 
@@ -36,7 +35,7 @@ export function Location() {
           level: 3,
         });
 
-        const marker = new window.kakao.maps.Marker({
+        new window.kakao.maps.Marker({
           position,
           map,
         });
@@ -44,102 +43,203 @@ export function Location() {
     };
 
     return () => {
-      document.head.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, [venue.latitude, venue.longitude]);
 
-  const openInMap = (type: "kakao" | "naver" | "google") => {
-    const { latitude, longitude, address } = venue;
+  const openInMap = (type: "naver" | "kakao" | "tmap") => {
+    const { latitude, longitude, address, name } = venue;
 
     const urls = {
-      kakao: `https://map.kakao.com/link/map/${encodeURIComponent(
-        venue.name
-      )},${latitude},${longitude}`,
       naver: `https://map.naver.com/v5/search/${encodeURIComponent(address)}`,
-      google: `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
+      kakao: `https://map.kakao.com/link/map/${encodeURIComponent(
+        name
+      )},${latitude},${longitude}`,
+      tmap: `https://apis.openapi.sk.com/tmap/app/routes?appKey=&name=${encodeURIComponent(
+        name
+      )}&lon=${longitude}&lat=${latitude}`,
     };
 
     window.open(urls[type], "_blank");
   };
 
   return (
-    <section className="w-full py-12 md:py-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center text-gray-800 mb-8 md:mb-10">
-          오시는 길
+    <section
+      className="relative w-screen ml-[calc(50%-50vw)] bg-white bg-no-repeat bg-center"
+      style={{
+        backgroundImage: "url(/background.png)",
+        backgroundSize: "100% 100%",
+      }}
+    >
+      {/* 컨텐츠 */}
+      <div className="flex flex-col items-center px-6 pt-[54px] pb-[54px]">
+        {/* 제목 */}
+        <h2
+          className="text-lg font-bold text-center mb-4 leading-tight tracking-normal capitalize text-[#111111]"
+          style={{ fontFamily: "var(--font-gamtan)" }}
+        >
+          오시는길
         </h2>
 
-        <Card padding="none" className="overflow-hidden">
-          {/* 지도 */}
+        {/* 장소명 및 주소 */}
+        <p
+          className="text-sm font-normal text-center mb-4 leading-[160%] text-[#111111]"
+          style={{ fontFamily: "var(--font-gamtan)" }}
+        >
+          <span className="font-medium">{venue.name}</span>
+          {"   "}
+          {venue.address}
+        </p>
+
+        {/* 카카오 지도 */}
+        <div className="w-full max-w-sm mb-3 relative">
+          {/* 지글지글 테두리 */}
+          <div
+            className="absolute inset-0 rounded-lg pointer-events-none border-2 border-[#628869] z-10"
+            style={{
+              filter: "url(#squiggly-border)",
+            }}
+          />
           <div
             ref={mapRef}
-            className="w-full h-72 sm:h-80 md:h-96 bg-gray-200"
+            className="w-full min-h-[180px] rounded-lg overflow-hidden bg-gray-100"
           />
+          <svg width="0" height="0" className="absolute">
+            <defs>
+              <filter id="squiggly-border">
+                <feTurbulence
+                  type="turbulence"
+                  baseFrequency="0.02"
+                  numOctaves="3"
+                  seed="1"
+                  result="noise"
+                />
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="noise"
+                  scale="2"
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </div>
 
-          <div className="p-6 sm:p-8">
-            {/* 주소 */}
-            <div className="mb-6">
-              <h3 className="text-xl sm:text-2xl font-medium text-gray-800 mb-3">
-                {venue.name}
-              </h3>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                {venue.address}
-              </p>
-            </div>
-
-            {/* 지도 앱 버튼 */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-8">
-              <Button
-                size="md"
-                variant="outline"
-                onClick={() => openInMap("kakao")}
-                className="flex-1 touch-manipulation"
-              >
-                카카오맵
-              </Button>
-              <Button
-                size="md"
-                variant="outline"
-                onClick={() => openInMap("naver")}
-                className="flex-1 touch-manipulation"
-              >
-                네이버지도
-              </Button>
-              <Button
-                size="md"
-                variant="outline"
-                onClick={() => openInMap("google")}
-                className="flex-1 touch-manipulation"
-              >
-                구글맵
-              </Button>
-            </div>
-
-            {/* 교통 정보 */}
-            {venue.transportInfo && (
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                <h4 className="text-sm sm:text-base font-medium text-gray-700 mb-2">
-                  대중교통
-                </h4>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                  {venue.transportInfo}
-                </p>
-              </div>
-            )}
-
-            {/* 주차 정보 */}
-            {venue.parkingInfo && (
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <h4 className="text-sm sm:text-base font-medium text-gray-700 mb-2">
-                  주차안내
-                </h4>
-                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                  {venue.parkingInfo}
-                </p>
-              </div>
-            )}
+        {/* 지도 앱 버튼 */}
+        <div className="flex gap-2 mb-6 w-full max-w-sm">
+          <div className="flex-1 relative">
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+              style={{ filter: "url(#squiggly-border)" }}
+            />
+            <button
+              onClick={() => openInMap("naver")}
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <Image src="/naver.svg" alt="네이버" width={20} height={20} />
+              네이버지도
+            </button>
           </div>
-        </Card>
+          <div className="flex-1 relative">
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+              style={{ filter: "url(#squiggly-border)" }}
+            />
+            <button
+              onClick={() => openInMap("kakao")}
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <Image src="/kakao.svg" alt="카카오" width={20} height={20} />
+              카카오내비
+            </button>
+          </div>
+          <div className="flex-1 relative">
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+              style={{ filter: "url(#squiggly-border)" }}
+            />
+            <button
+              onClick={() => openInMap("tmap")}
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <Image src="/tmap.svg" alt="티맵" width={20} height={20} />
+              티맵
+            </button>
+          </div>
+        </div>
+
+        {/* 교통 정보 섹션 */}
+        <div className="w-full max-w-sm space-y-5">
+          {/* 지하철 */}
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/subway.svg" alt="지하철" width={20} height={20} />
+              <h3
+                className="text-base font-bold leading-normal tracking-normal text-[#111111]"
+                style={{ fontFamily: "var(--font-gamtan)" }}
+              >
+                지하철
+              </h3>
+            </div>
+            <div
+              className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <p>4호선 고잔역 2번출구</p>
+              <p>셔틀버스는 예식 2시간 후까지 운행합니다.</p>
+              <p>(셔틀버스 5분~7분 간격 수시운행 / 도보 15~20분)</p>
+            </div>
+          </div>
+
+          {/* 버스 */}
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/bus.svg" alt="버스" width={20} height={20} />
+              <h3
+                className="text-base font-bold leading-normal tracking-normal text-[#111111]"
+                style={{ fontFamily: "var(--font-gamtan)" }}
+              >
+                버스
+              </h3>
+            </div>
+            <div
+              className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <p>안산 문화숲의 광장 하차 - 88번</p>
+              <p>동남레이크빌 하차 - 99-1번, 3100번</p>
+              <p>대림호수공원아파트 하차 - 77번, 98번, 3번</p>
+            </div>
+          </div>
+
+          {/* 주차장 */}
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <Image src="/parking.svg" alt="주차" width={20} height={20} />
+              <h3
+                className="text-base font-bold leading-normal tracking-normal text-[#111111]"
+                style={{ fontFamily: "var(--font-gamtan)" }}
+              >
+                주차장
+              </h3>
+            </div>
+            <div
+              className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+              style={{ fontFamily: "var(--font-gamtan)" }}
+            >
+              <p>제 1주차장 - AW컨벤션 지상, 지하 1층, 2층</p>
+              <p>제 2주차장 - 양지주차타워(AW컨벤션 주차타워)</p>
+              <p>제 3주차장 - AW컨벤션 정문 맞은편 공영주차장</p>
+              <p>제 4주차장 - MK주차타워</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

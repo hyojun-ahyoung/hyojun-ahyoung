@@ -30,13 +30,13 @@ function MainContent() {
         <section className="h-10" />
         <DdayCounter />
         <section className="h-10" />
-        <DateTime />
+        <Location />
         <section className="h-10" />
+        <DateTime />
 
         {/* <CoupleInfo polite={polite} />
         <Gallery />
         <Timeline />
-        <Location />
         <Account /> */}
 
         {/* 푸터 */}
