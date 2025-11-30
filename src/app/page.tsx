@@ -30,12 +30,13 @@ function MainContent() {
         <section className="h-10" />
         <DdayCounter />
         <section className="h-10" />
+        <Gallery />
+        <section className="h-10" />
         <Location />
         <section className="h-10" />
         <DateTime />
 
         {/* <CoupleInfo polite={polite} />
-        <Gallery />
         <Timeline />
         <Account /> */}
 

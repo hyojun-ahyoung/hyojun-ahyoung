@@ -1,161 +1,117 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { GALLERY_IMAGES } from "@/constants/wedding-info";
 
 export function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [touchStart, setTouchStart] = useState<number>(0);
-  const [touchEnd, setTouchEnd] = useState<number>(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 스와이프 처리
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? GALLERY_IMAGES.length - 1 : prev - 1
+    );
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev === GALLERY_IMAGES.length - 1 ? 0 : prev + 1
+    );
   };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd || selectedImage === null) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe && selectedImage < GALLERY_IMAGES.length - 1) {
-      setSelectedImage(selectedImage + 1);
-    }
-    if (isRightSwipe && selectedImage > 0) {
-      setSelectedImage(selectedImage - 1);
-    }
-
-    setTouchStart(0);
-    setTouchEnd(0);
-  };
-
-  // 키보드 네비게이션
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedImage === null) return;
-
-      if (e.key === "ArrowLeft" && selectedImage > 0) {
-        setSelectedImage(selectedImage - 1);
-      }
-      if (e.key === "ArrowRight" && selectedImage < GALLERY_IMAGES.length - 1) {
-        setSelectedImage(selectedImage + 1);
-      }
-      if (e.key === "Escape") {
-        setSelectedImage(null);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedImage]);
 
   return (
-    <section className="w-full py-12 md:py-16 px-6 bg-gray-50/50">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center text-gray-800 mb-8 md:mb-10">
-          우리의 순간들
-        </h2>
+    <section
+      className="w-screen ml-[calc(50%-50vw)] bg-white bg-no-repeat bg-center py-12"
+      style={{
+        backgroundImage: "url(/gallery_bg.svg)",
+        backgroundSize: "100% 100%",
+      }}
+    >
+      <div className="max-w-md mx-auto px-6">
+        {/* 메인 이미지 영역 */}
+        <div className="relative flex items-center justify-center mb-6">
+          {/* 왼쪽 화살표 */}
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 z-20 w-10 h-10 flex items-center justify-center -translate-x-4"
+          >
+            <Image src="/gallery_left.svg" alt="이전" width={40} height={40} />
+          </button>
 
-        {/* 갤러리 그리드 */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-          {GALLERY_IMAGES.map((image, index) => (
+          {/* 메인 이미지 + 지글지글 프레임 */}
+          <div className="relative w-full max-w-[280px]">
+            {/* 지글지글 프레임 */}
+            <div
+              className="absolute inset-0 rounded-lg pointer-events-none z-10"
+              style={{
+                border: "4px solid #E8A4B8",
+                filter: "url(#squiggly-gallery)",
+              }}
+            />
+            <div className="relative aspect-3/4 rounded-lg overflow-hidden bg-gray-100">
+              <Image
+                src={GALLERY_IMAGES[currentIndex].src}
+                alt={GALLERY_IMAGES[currentIndex].alt}
+                fill
+                className="object-cover"
+                sizes="280px"
+                priority
+              />
+            </div>
+            {/* SVG 필터 정의 */}
+            <svg width="0" height="0" className="absolute">
+              <defs>
+                <filter id="squiggly-gallery">
+                  <feTurbulence
+                    type="turbulence"
+                    baseFrequency="0.02"
+                    numOctaves="3"
+                    seed="1"
+                    result="noise"
+                  />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="3"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+
+          {/* 오른쪽 화살표 */}
+          <button
+            onClick={handleNext}
+            className="absolute right-0 z-20 w-10 h-10 flex items-center justify-center translate-x-4"
+          >
+            <Image src="/gallery_right.svg" alt="다음" width={40} height={40} />
+          </button>
+        </div>
+
+        {/* 썸네일 갤러리 - 5개 고정 */}
+        <div className="flex justify-center gap-2">
+          {GALLERY_IMAGES.slice(0, 5).map((image, index) => (
             <button
               key={index}
-              onClick={() => setSelectedImage(index)}
-              className="relative aspect-square overflow-hidden rounded-xl sm:rounded-2xl bg-gray-200 active:opacity-80 transition-opacity touch-manipulation"
+              onClick={() => setCurrentIndex(index)}
+              className={`relative w-14 h-14 rounded-lg overflow-hidden transition-all ${
+                index === currentIndex
+                  ? "ring-2 ring-[#E8A4B8] ring-offset-2"
+                  : "opacity-70"
+              }`}
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 50vw, 33vw"
+                sizes="56px"
               />
             </button>
           ))}
         </div>
-
-        {/* 이미지 모달 */}
-        {selectedImage !== null && (
-          <div
-            ref={modalRef}
-            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
-            onClick={() => setSelectedImage(null)}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* 닫기 버튼 */}
-            <button
-              className="absolute top-4 right-4 z-10 w-12 h-12 flex items-center justify-center text-white text-4xl font-light hover:bg-white/10 rounded-full transition-colors touch-manipulation"
-              onClick={(e) => {
-                e.stopPropagation();
-                setSelectedImage(null);
-              }}
-            >
-              ×
-            </button>
-
-            {/* 이전/다음 버튼 */}
-            {selectedImage > 0 && (
-              <button
-                className="absolute left-4 z-10 w-12 h-12 flex items-center justify-center text-white text-3xl hover:bg-white/10 rounded-full transition-colors touch-manipulation"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedImage(selectedImage - 1);
-                }}
-              >
-                ‹
-              </button>
-            )}
-            {selectedImage < GALLERY_IMAGES.length - 1 && (
-              <button
-                className="absolute right-4 z-10 w-12 h-12 flex items-center justify-center text-white text-3xl hover:bg-white/10 rounded-full transition-colors touch-manipulation"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedImage(selectedImage + 1);
-                }}
-              >
-                ›
-              </button>
-            )}
-
-            {/* 이미지 */}
-            <div
-              className="relative w-full h-full max-w-4xl max-h-[90vh] px-4"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={GALLERY_IMAGES[selectedImage].src}
-                alt={GALLERY_IMAGES[selectedImage].alt}
-                fill
-                className="object-contain"
-                sizes="100vw"
-                priority
-              />
-            </div>
-
-            {/* 이미지 인디케이터 */}
-            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
-              {GALLERY_IMAGES.map((_, index) => (
-                <div
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === selectedImage ? "bg-white w-6" : "bg-white/50"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
