@@ -29,17 +29,17 @@ export function Gallery() {
     >
       <div className="max-w-md mx-auto px-6">
         {/* 메인 이미지 영역 */}
-        <div className="relative flex items-center justify-center mb-6">
+        <div className="flex items-center justify-center gap-1 mb-6">
           {/* 왼쪽 화살표 */}
           <button
             onClick={handlePrev}
-            className="absolute left-0 z-20 w-10 h-10 flex items-center justify-center -translate-x-4"
+            className="shrink-0 w-8 h-8 flex items-center justify-center"
           >
-            <Image src="/gallery_left.svg" alt="이전" width={40} height={40} />
+            <Image src="/gallery_left.svg" alt="이전" width={24} height={24} />
           </button>
 
           {/* 메인 이미지 + 지글지글 프레임 */}
-          <div className="relative w-full max-w-[280px]">
+          <div className="relative flex-1">
             {/* 지글지글 프레임 */}
             <div
               className="absolute inset-0 rounded-lg pointer-events-none z-10"
@@ -84,9 +84,9 @@ export function Gallery() {
           {/* 오른쪽 화살표 */}
           <button
             onClick={handleNext}
-            className="absolute right-0 z-20 w-10 h-10 flex items-center justify-center translate-x-4"
+            className="shrink-0 w-8 h-8 flex items-center justify-center"
           >
-            <Image src="/gallery_right.svg" alt="다음" width={40} height={40} />
+            <Image src="/gallery_right.svg" alt="다음" width={24} height={24} />
           </button>
         </div>
 

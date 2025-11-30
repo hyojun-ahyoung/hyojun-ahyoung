@@ -44,7 +44,7 @@ export function DdayCounter() {
 
         {/* Progress Bar Section */}
         {/* 텍스트와 겹치지 않도록 상단 여백(mt-32) 충분히 확보 */}
-        <div className="w-[calc(100%-100px)] max-w-md relative mx-auto">
+        <div className="w-full max-w-sm relative mx-auto">
           {/* Characters Area */}
           <div className="absolute bottom-full left-0 w-full mb-2 h-14 pointer-events-none z-10">
             {/* Groom - Moves with progress */}
