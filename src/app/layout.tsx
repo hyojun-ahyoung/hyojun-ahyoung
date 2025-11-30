@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/ui/SplashScreen";
@@ -46,7 +47,9 @@ export default function RootLayout({
       >
         <div className="min-h-screen w-full flex justify-center bg-gray-50">
           <div className="relative w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
-            <SplashScreen />
+            <Suspense fallback={null}>
+              <SplashScreen />
+            </Suspense>
             {children}
           </div>
         </div>
