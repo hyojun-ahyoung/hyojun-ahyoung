@@ -3,14 +3,12 @@
 import { Suspense } from "react";
 import { useQueryParams } from "@/hooks/useQueryParams";
 import { SnowEffect } from "@/components/ui/SnowEffect";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
 import { DdayCounter } from "@/components/sections/DdayCounter";
-import { CoupleInfo } from "@/components/sections/CoupleInfo";
-import { DateTime } from "@/components/sections/DateTime";
 import { Gallery } from "@/components/sections/Gallery";
 import { Calendar } from "@/components/sections/Calendar";
-import { Timeline } from "@/components/sections/Timeline";
 import { Location } from "@/components/sections/Location";
 import { Account } from "@/components/sections/Account";
 
@@ -25,16 +23,38 @@ function MainContent() {
       {/* 메인 콘텐츠 */}
       <div className="relative z-10 w-full flex flex-col items-center">
         <Hero guestName={name} polite={polite} />
-        <Greeting />
-        <Calendar />
+
+        <ScrollReveal>
+          <Greeting />
+        </ScrollReveal>
+
+        <ScrollReveal delay={100}>
+          <Calendar />
+        </ScrollReveal>
+
         <section className="h-10" />
-        <DdayCounter />
+
+        <ScrollReveal>
+          <DdayCounter />
+        </ScrollReveal>
+
         <section className="h-10" />
-        <Gallery />
+
+        <ScrollReveal>
+          <Gallery />
+        </ScrollReveal>
+
         <section className="h-10" />
-        <Location />
+
+        <ScrollReveal>
+          <Location />
+        </ScrollReveal>
+
         <section className="h-10" />
-        <Account />
+
+        <ScrollReveal>
+          <Account />
+        </ScrollReveal>
       </div>
     </>
   );
