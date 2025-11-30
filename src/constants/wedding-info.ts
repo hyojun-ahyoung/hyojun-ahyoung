@@ -1,4 +1,4 @@
-import { WeddingInfo, AccountInfo, TimelineItem } from "@/types";
+import { WeddingInfo, TimelineItem } from "@/types";
 
 // 결혼식 기본 정보
 export const WEDDING_INFO: WeddingInfo = {
@@ -46,31 +46,47 @@ export const WEDDING_INFO: WeddingInfo = {
 
 // 계좌 정보
 export const ACCOUNT_INFO: {
-  groom: AccountInfo[];
-  bride: AccountInfo[];
+  groom: { role: string; name: string; bank: string; accountNumber: string }[];
+  bride: { role: string; name: string; bank: string; accountNumber: string }[];
 } = {
   groom: [
     {
-      holder: "박효준",
+      role: "신랑",
+      name: "박효준",
       bank: "카카오뱅크",
-      accountNumber: "3333-00-0000000",
+      accountNumber: "3333-02-9995632",
     },
     {
-      holder: "박OO (부)",
+      role: "아버지",
+      name: "박대경",
       bank: "국민은행",
-      accountNumber: "000000-00-000000",
+      accountNumber: "5935-01-01-036237",
+    },
+    {
+      role: "어머니",
+      name: "최인숙",
+      bank: "우리은행",
+      accountNumber: "1002-136-992717",
     },
   ],
   bride: [
     {
-      holder: "이아영",
-      bank: "토스뱅크",
-      accountNumber: "1000-0000-0000",
+      role: "신부",
+      name: "이아영",
+      bank: "카카오뱅크",
+      accountNumber: "3333-08-9560455",
     },
     {
-      holder: "김OO (부)",
-      bank: "신한은행",
-      accountNumber: "110-000-000000",
+      role: "아버지",
+      name: "이동철",
+      bank: "농협은행",
+      accountNumber: "352-1240-2411-93",
+    },
+    {
+      role: "어머니",
+      name: "김유임",
+      bank: "국민은행",
+      accountNumber: "263-21-0092-460",
     },
   ],
 };

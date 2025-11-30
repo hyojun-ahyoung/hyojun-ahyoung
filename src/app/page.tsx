@@ -34,18 +34,7 @@ function MainContent() {
         <section className="h-10" />
         <Location />
         <section className="h-10" />
-        <DateTime />
-
-        {/* <CoupleInfo polite={polite} />
-        <Timeline />
-        <Account /> */}
-
-        {/* 푸터 */}
-        {/* <footer className="w-full py-16 px-6 text-center">
-          <p className="text-sm sm:text-base text-gray-500">
-            Thank you for celebrating with us
-          </p>
-        </footer> */}
+        <Account />
       </div>
     </>
   );
@@ -53,7 +42,7 @@ function MainContent() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex flex-col items-center">
+    <div className="flex flex-col items-center pb-24">
       <Suspense
         fallback={
           <div className="min-h-screen flex items-center justify-center">

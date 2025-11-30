@@ -2,83 +2,185 @@
 
 import { useState } from "react";
 import { ACCOUNT_INFO } from "@/constants/wedding-info";
-import { Card } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
 import { copyToClipboard } from "@/utils/text";
-import { AccountInfo } from "@/types";
 
 export function Account() {
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
+  const [groomOpen, setGroomOpen] = useState(false);
+  const [brideOpen, setBrideOpen] = useState(false);
 
-  const handleCopy = async (account: AccountInfo) => {
-    const text = `${account.bank} ${account.accountNumber}`;
+  const handleCopy = async (accountNumber: string, bank: string) => {
+    const text = `${bank} ${accountNumber}`;
     const success = await copyToClipboard(text);
 
     if (success) {
-      setCopiedAccount(account.accountNumber);
+      setCopiedAccount(accountNumber);
       setTimeout(() => setCopiedAccount(null), 2000);
     }
   };
 
-  const AccountCard = ({
-    title,
-    accounts,
-  }: {
-    title: string;
-    accounts: AccountInfo[];
-  }) => (
-    <div className="flex-1">
-      <h3 className="text-xl sm:text-2xl font-medium text-gray-800 mb-6 text-center">
-        {title}
-      </h3>
-      <div className="space-y-4">
-        {accounts.map((account, index) => (
-          <div key={index} className="p-5 bg-gray-50 rounded-xl">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex-1 min-w-0">
-                <p className="text-sm sm:text-base text-gray-600 mb-2">
-                  {account.holder}
-                </p>
-                <p className="text-base sm:text-lg font-medium text-gray-800 mb-1">
-                  {account.bank}
-                </p>
-                <p className="text-sm sm:text-base text-gray-700 font-mono break-all">
-                  {account.accountNumber}
-                </p>
-              </div>
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => handleCopy(account)}
-                className="ml-2 whitespace-nowrap shrink-0 touch-manipulation min-h-11"
-              >
-                {copiedAccount === account.accountNumber ? "복사됨" : "복사"}
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
   return (
-    <section className="w-full py-12 md:py-16 px-6 bg-gray-50/50">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-center text-gray-800 mb-4">
-          마음 전하실 곳
-        </h2>
-        <p className="text-sm sm:text-base text-gray-500 text-center mb-8 md:mb-10">
-          참석이 어려우신 분들을 위해 계좌번호를 안내드립니다
-        </p>
+    <section className="w-screen ml-[calc(50%-50vw)] bg-white py-12 px-6">
+      <div className="max-w-md mx-auto">
+        {/* 상단 안내 문구 */}
+        <div
+          className="text-center mb-8 text-[#111111]"
+          style={{ fontFamily: "var(--font-gamtan)" }}
+        >
+          <p className="text-base leading-relaxed">
+            멀리서도 저희를 축하해주시는 마음, 감사히 받겠습니다.
+          </p>
+          <p className="text-base leading-relaxed">참석이 어려운 분들을 위해</p>
+          <p className="text-base leading-relaxed">
+            마음을 전할 수 있는 곳을 함께 안내드립니다.
+          </p>
+        </div>
 
-        <Card padding="lg">
-          <div className="flex flex-col md:flex-row gap-10 md:gap-12">
-            <AccountCard title="신랑측" accounts={ACCOUNT_INFO.groom} />
-            <div className="hidden md:block w-px bg-gray-200" />
-            <div className="md:hidden h-px bg-gray-200" />
-            <AccountCard title="신부측" accounts={ACCOUNT_INFO.bride} />
-          </div>
-        </Card>
+        {/* 신랑측 계좌 */}
+        <div className="mb-6">
+          {/* 신랑측 타이틀 - 사용자가 디자인할 부분 */}
+          <button
+            onClick={() => setGroomOpen(!groomOpen)}
+            className="w-full py-4 px-6 rounded-full border-2 border-[#628869] flex items-center justify-between text-[#628869] mb-4"
+            style={{
+              fontFamily: "var(--font-gamtan)",
+              filter: "url(#squiggly-account)",
+            }}
+          >
+            <span className="flex-1 text-center text-lg font-medium">
+              신랑측 계좌번호
+            </span>
+            <span className="text-xl">{groomOpen ? "↑" : "↓"}</span>
+          </button>
+
+          {/* 신랑측 계좌 목록 */}
+          {groomOpen && (
+            <div className="space-y-0">
+              {ACCOUNT_INFO.groom.map((account, index) => (
+                <div
+                  key={index}
+                  className="py-4 border-b-2 border-[#628869]"
+                  style={{
+                    borderImage:
+                      "linear-gradient(90deg, #628869, #628869) 1",
+                  }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex gap-4">
+                      <span
+                        className="text-sm text-[#628869] w-10"
+                        style={{ fontFamily: "var(--font-gamtan)" }}
+                      >
+                        {account.role}
+                      </span>
+                      <div style={{ fontFamily: "var(--font-gamtan)" }}>
+                        <p className="text-base font-medium text-[#111111]">
+                          {account.name}
+                        </p>
+                        <p className="text-sm text-[#111111]">
+                          {account.accountNumber} {account.bank}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() =>
+                        handleCopy(account.accountNumber, account.bank)
+                      }
+                      className="px-4 py-1.5 bg-[#628869] text-white text-sm rounded-md"
+                      style={{ fontFamily: "var(--font-gamtan)" }}
+                    >
+                      {copiedAccount === account.accountNumber ? "복사됨" : "복사"}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 신부측 계좌 */}
+        <div>
+          {/* 신부측 타이틀 - 사용자가 디자인할 부분 */}
+          <button
+            onClick={() => setBrideOpen(!brideOpen)}
+            className="w-full py-4 px-6 rounded-full border-2 border-[#E8A4B8] flex items-center justify-between text-[#E8A4B8] mb-4"
+            style={{
+              fontFamily: "var(--font-gamtan)",
+              filter: "url(#squiggly-account)",
+            }}
+          >
+            <span className="flex-1 text-center text-lg font-medium">
+              신부측 계좌번호
+            </span>
+            <span className="text-xl">{brideOpen ? "↑" : "↓"}</span>
+          </button>
+
+          {/* 신부측 계좌 목록 */}
+          {brideOpen && (
+            <div className="space-y-0">
+              {ACCOUNT_INFO.bride.map((account, index) => (
+                <div
+                  key={index}
+                  className="py-4 border-b-2 border-[#E8A4B8]"
+                  style={{
+                    borderImage:
+                      "linear-gradient(90deg, #E8A4B8, #E8A4B8) 1",
+                  }}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex gap-4">
+                      <span
+                        className="text-sm text-[#E8A4B8] w-10"
+                        style={{ fontFamily: "var(--font-gamtan)" }}
+                      >
+                        {account.role}
+                      </span>
+                      <div style={{ fontFamily: "var(--font-gamtan)" }}>
+                        <p className="text-base font-medium text-[#111111]">
+                          {account.name}
+                        </p>
+                        <p className="text-sm text-[#111111]">
+                          {account.accountNumber} {account.bank}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() =>
+                        handleCopy(account.accountNumber, account.bank)
+                      }
+                      className="px-4 py-1.5 bg-[#E8A4B8] text-white text-sm rounded-md"
+                      style={{ fontFamily: "var(--font-gamtan)" }}
+                    >
+                      {copiedAccount === account.accountNumber ? "복사됨" : "복사"}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* 지글지글 필터 */}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <filter id="squiggly-account">
+              <feTurbulence
+                type="turbulence"
+                baseFrequency="0.02"
+                numOctaves="3"
+                seed="1"
+                result="noise"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale="2"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+        </svg>
       </div>
     </section>
   );
