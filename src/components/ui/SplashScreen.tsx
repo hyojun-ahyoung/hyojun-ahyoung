@@ -21,15 +21,15 @@ export function SplashScreen() {
   useEffect(() => {
     if (!isFontsReady) return;
 
-    // 폰트 로드 후 2초 뒤 페이드아웃 시작
+    // 폰트 로드 후 3초 뒤 페이드아웃 시작 (나타나는 시간 1.5초 포함)
     const fadeTimer = setTimeout(() => {
       setIsFadingOut(true);
-    }, 2000);
+    }, 3000);
 
-    // 2.5초 후 완전히 제거
+    // 3.5초 후 완전히 제거
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 2500);
+    }, 3500);
 
     return () => {
       clearTimeout(fadeTimer);
@@ -47,14 +47,16 @@ export function SplashScreen() {
     >
       {/* 딤 배경 - 폰트 로드 후 블러 적용 */}
       <div
-        className={`absolute inset-0 transition-all duration-300 ${
+        className={`absolute inset-0 transition-all duration-700 ease-out ${
           isFontsReady ? "bg-white/80 backdrop-blur-md" : "bg-white"
         }`}
       />
-      {/* 폰트 로드 전: 숨김 / 로드 후: 콘텐츠 페이드인 */}
+      {/* 폰트 로드 전: 숨김 / 로드 후: 콘텐츠 스르륵 나타남 */}
       <div
-        className={`relative z-10 bg-white mx-5 w-full max-w-[400px] transform transition-all duration-300 ${
-          isFontsReady ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        className={`relative z-10 bg-white mx-5 w-full max-w-[400px] transform transition-all duration-1500 ease-out ${
+          isFontsReady
+            ? "opacity-100 scale-100 translate-y-0"
+            : "opacity-0 scale-95 translate-y-4"
         } ${isFadingOut ? "scale-95 opacity-0" : ""}`}
       >
         {/* splash.svg 배경 이미지 */}
