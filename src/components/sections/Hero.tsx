@@ -35,7 +35,7 @@ export function Hero({ guestName, polite }: HeroProps) {
   };
 
   return (
-    <section className="relative w-full flex flex-col overflow-hidden h-svh">
+    <section className="relative w-full h-screen flex flex-col overflow-hidden">
       {/* 상단: 이미지 영역 */}
       <div className="relative w-full flex-1 min-h-0">
         <Image

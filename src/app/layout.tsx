@@ -48,7 +48,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <SplashScreen />
         </Suspense>
-        <div className="min-h-svh w-full flex justify-center bg-gray-50">
+        <div className="min-h-screen w-full flex justify-center bg-gray-50">
           <div className="w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
             {children}
           </div>

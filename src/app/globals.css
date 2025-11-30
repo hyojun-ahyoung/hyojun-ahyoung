@@ -101,13 +101,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 모바일 뷰포트 높이 대응 - svh 미지원 브라우저 fallback */
+/* 모바일 뷰포트 높이 대응 */
 @supports (-webkit-touch-callout: none) {
-  .min-h-svh {
+  .min-h-screen {
     min-height: -webkit-fill-available;
-  }
-  .h-svh {
-    height: -webkit-fill-available;
   }
 }
 
