@@ -68,7 +68,7 @@ export function Location() {
   return (
     <section className="relative w-screen ml-[calc(50%-50vw)] bg-white">
       {/* 상단 타이틀 이미지 - 배경 안으로 겹침, 일부는 밖으로 */}
-      <div className="flex justify-center relative z-10 -mb-48 px-5">
+      <div className="flex justify-center relative z-10 -mb-32 px-5">
         <Image
           src="/location_bg.svg"
           alt="오시는길 배경"
@@ -80,14 +80,14 @@ export function Location() {
 
       {/* 배경 영역 */}
       <div
-        className="bg-no-repeat bg-center pt-40"
+        className="bg-no-repeat bg-center pt-24"
         style={{
           backgroundImage: "url(/background.png)",
           backgroundSize: "100% 100%",
         }}
       >
         {/* 컨텐츠 */}
-        <div className="flex flex-col items-center px-6 pt-4 pb-[54px]">
+        <div className="flex flex-col items-center px-6 pt-10 pb-[54px]">
           {/* 제목 */}
           <h2
             className="text-lg font-bold text-center mb-4 leading-tight tracking-normal capitalize text-[#111111]"
