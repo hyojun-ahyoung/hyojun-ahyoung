@@ -7,7 +7,7 @@ export function Greeting() {
   const { groom, bride } = WEDDING_INFO;
 
   return (
-    <section className="flex flex-col items-center w-screen ml-[calc(50%-50vw)] bg-white">
+    <section className="flex flex-col items-center w-full bg-white">
       {/* layer.svg 배경 영역 - 인사말 텍스트만 */}
       <div
         className="w-full flex justify-center bg-no-repeat bg-center"

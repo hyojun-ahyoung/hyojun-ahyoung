@@ -21,7 +21,7 @@ export function Gallery() {
 
   return (
     <section
-      className="w-screen ml-[calc(50%-50vw)] bg-white bg-no-repeat bg-center py-12"
+      className="w-full bg-white bg-no-repeat bg-center py-12"
       style={{
         backgroundImage: "url(/gallery_bg.svg)",
         backgroundSize: "100% 100%",

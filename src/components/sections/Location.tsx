@@ -66,7 +66,7 @@ export function Location() {
   };
 
   return (
-    <section className="relative w-screen ml-[calc(50%-50vw)] bg-white">
+    <section className="relative w-full bg-white">
       {/* 상단 타이틀 이미지 - 배경 안으로 겹침, 일부는 밖으로 */}
       <div className="flex justify-center relative z-10 -mb-32 px-5">
         <Image

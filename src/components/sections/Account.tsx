@@ -20,7 +20,7 @@ export function Account() {
   };
 
   return (
-    <section className="w-screen ml-[calc(50%-50vw)] bg-white py-12 px-6">
+    <section className="w-full bg-white py-12 px-6">
       <div className="max-w-md mx-auto">
         {/* 상단 안내 문구 */}
         <div
