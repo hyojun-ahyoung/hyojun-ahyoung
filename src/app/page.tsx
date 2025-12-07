@@ -54,6 +54,7 @@ function MainContent() {
 
         <FullPageSection>
           <Location />
+          <div className="h-32" />
         </FullPageSection>
 
         <FullPageSection>

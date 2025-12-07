@@ -15,7 +15,7 @@ export function Calendar() {
           <div>안산 AW컨벤션 6층 테라스볼룸홀</div>
         </div>
       </div>
-      <div className="max-w-md mx-auto flex items-center justify-center">
+      <div className="max-w-md mx-auto flex items-center justify-center px-8">
         <Image
           src="/calendar.svg"
           alt="Wedding Calendar"
