@@ -21,11 +21,13 @@ function MainContent() {
       <div className="relative z-10 w-full flex flex-col items-center">
         <Hero />
 
+        <section className="h-32" />
+
         <ScrollReveal>
           <Greeting />
         </ScrollReveal>
 
-        <section className="h-28" />
+        <section className="h-32" />
 
         <ScrollReveal delay={100}>
           <Calendar />
