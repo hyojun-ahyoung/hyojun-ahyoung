@@ -20,7 +20,7 @@ export function Account() {
   };
 
   return (
-    <section className="w-full bg-white py-12 px-6">
+    <section className="w-full bg-white px-6">
       <div className="max-w-md mx-auto">
         {/* 상단 안내 문구 */}
         <div
@@ -61,8 +61,7 @@ export function Account() {
                   key={index}
                   className="py-4 border-b-2 border-[#628869]"
                   style={{
-                    borderImage:
-                      "linear-gradient(90deg, #628869, #628869) 1",
+                    borderImage: "linear-gradient(90deg, #628869, #628869) 1",
                   }}
                 >
                   <div className="flex items-start justify-between">
@@ -89,7 +88,9 @@ export function Account() {
                       className="px-4 py-1.5 bg-[#628869] text-white text-sm rounded-md"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
-                      {copiedAccount === account.accountNumber ? "복사됨" : "복사"}
+                      {copiedAccount === account.accountNumber
+                        ? "복사됨"
+                        : "복사"}
                     </button>
                   </div>
                 </div>
@@ -123,8 +124,7 @@ export function Account() {
                   key={index}
                   className="py-4 border-b-2 border-[#E8A4B8]"
                   style={{
-                    borderImage:
-                      "linear-gradient(90deg, #E8A4B8, #E8A4B8) 1",
+                    borderImage: "linear-gradient(90deg, #E8A4B8, #E8A4B8) 1",
                   }}
                 >
                   <div className="flex items-start justify-between">
@@ -151,7 +151,9 @@ export function Account() {
                       className="px-4 py-1.5 bg-[#E8A4B8] text-white text-sm rounded-md"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
-                      {copiedAccount === account.accountNumber ? "복사됨" : "복사"}
+                      {copiedAccount === account.accountNumber
+                        ? "복사됨"
+                        : "복사"}
                     </button>
                   </div>
                 </div>

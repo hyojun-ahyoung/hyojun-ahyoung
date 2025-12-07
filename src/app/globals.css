@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Vesper+Libre:wght@400;500;700;900&display=swap");
 @import "tailwindcss";
 
 /* GamtanRoad Batang 폰트 */
@@ -41,6 +42,7 @@
   --font-serif: var(--font-noto-serif);
   --font-gamtan: "GamtanRoad Batang", serif;
   --font-hanason: "Nanum HaNaSonGeurSsi", serif;
+  --font-vesper-libre: "Vesper Libre", serif;
 }
 
 @theme inline {
@@ -48,6 +50,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-noto-sans);
   --font-serif: var(--font-noto-serif);
+  --font-vesper: "Vesper Libre", serif;
 }
 
 * {

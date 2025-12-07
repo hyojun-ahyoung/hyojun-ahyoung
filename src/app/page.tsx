@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense } from "react";
-import { useQueryParams } from "@/hooks/useQueryParams";
 import { SnowEffect } from "@/components/ui/SnowEffect";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Hero } from "@/components/sections/Hero";
@@ -13,8 +12,6 @@ import { Location } from "@/components/sections/Location";
 import { Account } from "@/components/sections/Account";
 
 function MainContent() {
-  const { name, polite = true } = useQueryParams();
-
   return (
     <>
       {/* 눈 내리는 효과 */}
@@ -22,11 +19,13 @@ function MainContent() {
 
       {/* 메인 콘텐츠 */}
       <div className="relative z-10 w-full flex flex-col items-center">
-        <Hero guestName={name} polite={polite} />
+        <Hero />
 
         <ScrollReveal>
           <Greeting />
         </ScrollReveal>
+
+        <section className="h-28" />
 
         <ScrollReveal delay={100}>
           <Calendar />
@@ -50,7 +49,7 @@ function MainContent() {
           <Location />
         </ScrollReveal>
 
-        <section className="h-10" />
+        <section className="h-32" />
 
         <ScrollReveal>
           <Account />

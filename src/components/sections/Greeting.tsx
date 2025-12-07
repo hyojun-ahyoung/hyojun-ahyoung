@@ -8,17 +8,10 @@ export function Greeting() {
 
   return (
     <section className="flex flex-col items-center w-full bg-white">
-      {/* layer.svg 배경 영역 - 인사말 텍스트만 */}
-      <div
-        className="w-full flex justify-center bg-no-repeat bg-center"
-        style={{
-          backgroundImage: "url(/layer.svg)",
-          backgroundSize: "100% 100%",
-        }}
-      >
+      <div className="w-full flex justify-center bg-no-repeat bg-center">
         <div className="max-w-md w-full flex flex-col items-center text-center pt-[70px] pb-[70px] px-[50px]">
           <p
-            className="text-gray-800 text-center text-[17px] font-normal leading-[143%] tracking-normal"
+            className="text-gray-800 text-center text-2xl font-normal leading-[143%] tracking-normal"
             style={{ fontFamily: "var(--font-hanason)" }}
           >
             낯선 땅 호주에서 만나
@@ -35,7 +28,7 @@ export function Greeting() {
           <div className="h-6" />
 
           <p
-            className="text-gray-800 text-center text-[17px] font-normal leading-[143%] tracking-normal"
+            className="text-gray-800 text-center text-2xl font-normal leading-[143%] tracking-normal"
             style={{ fontFamily: "var(--font-hanason)" }}
           >
             길을 잃을 때마다, 사랑이라는
@@ -54,14 +47,14 @@ export function Greeting() {
       </div>
 
       {/* layer.svg 바깥 영역 - 일러스트 및 부모님 정보 */}
-      <div className="flex flex-col items-center text-center px-6 pb-12">
+      <div className="flex flex-col items-center text-center px-6 gap-8">
         {/* 일러스트 이미지 영역 */}
-        <div className="w-36 h-36 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <Image
             src="/images/greeting.png"
             alt="Wedding Illustration"
-            width={144}
-            height={144}
+            width={180}
+            height={180}
             className="object-contain"
           />
         </div>
@@ -69,27 +62,27 @@ export function Greeting() {
         {/* 부모님 정보 */}
         <div className="flex justify-center">
           <div
-            className="space-y-2 text-gray-800 text-sm font-normal leading-[180%] tracking-tight"
+            className="space-y-3 text-gray-800"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
-            <div className="flex items-center">
-              <span className="w-[110px]">
-                {groom.fatherName} <span>♥</span> {groom.motherName}
-              </span>
-              <span className="text-xs text-gray-600 w-[45px] text-left">
-                의 아들
-              </span>
-              <span className="font-medium">{groom.fullName}</span>
+            <div className="flex items-baseline">
+              <div className="flex items-baseline gap-3 text-xl">
+                <span>{groom.fatherName}</span>
+                <span className="text-sm">♥</span>
+                <span>{groom.motherName}</span>
+              </div>
+              <div className="text-normal w-12 text-left ml-1">의 아들</div>
+              <div className="text-xl font-medium ml-3">{groom.fullName}</div>
             </div>
 
-            <div className="flex items-center">
-              <span className="w-[110px]">
-                {bride.fatherName} <span>♥</span> {bride.motherName}
-              </span>
-              <span className="text-xs text-gray-600 w-[45px] text-left">
-                의 딸
-              </span>
-              <span className="font-medium">{bride.fullName}</span>
+            <div className="flex items-baseline">
+              <div className="flex items-baseline gap-3 text-xl">
+                <span>{bride.fatherName}</span>
+                <span className="text-sm">♥</span>
+                <span>{bride.motherName}</span>
+              </div>
+              <div className="text-normal w-12 text-left ml-1">의 딸</div>
+              <div className="text-xl font-medium ml-3">{bride.fullName}</div>
             </div>
           </div>
         </div>

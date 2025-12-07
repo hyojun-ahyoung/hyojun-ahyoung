@@ -25,7 +25,7 @@ export function DdayCounter() {
 
   return (
     <section className="w-full py-12 px-6">
-      <div className="max-w-2xl mx-auto flex flex-col items-center gap-14">
+      <div className="max-w-2xl mx-auto flex flex-col items-center gap-32">
         {/* Text Section */}
         <div className="text-center space-y-4 relative z-20">
           <p
@@ -55,7 +55,7 @@ export function DdayCounter() {
                 transform: "translateX(calc(-50% - 25px))",
               }}
             >
-              <div className="relative w-[50px] h-[50px]">
+              <div className="relative w-24 h-24">
                 <Image
                   src="/images/jun.png"
                   alt="Groom"
@@ -69,7 +69,7 @@ export function DdayCounter() {
 
             {/* Bride - Static at end */}
             <div className="absolute bottom-0 right-0 transform translate-x-[20%]">
-              <div className="relative w-[55px] h-[55px]">
+              <div className="relative w-24 h-24">
                 <Image
                   src="/images/amy.png"
                   alt="Bride"
@@ -91,7 +91,7 @@ export function DdayCounter() {
             >
               {/* Heart Icon at the tip of the bar */}
               <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20">
-                <div className="relative w-8 h-8">
+                <div className="relative w-10 h-10">
                   <Image
                     src="/images/heart.png"
                     alt="Heart"

@@ -68,19 +68,10 @@ export function Location() {
   return (
     <section className="relative w-full bg-white">
       {/* 상단 타이틀 이미지 - 배경 안으로 겹침, 일부는 밖으로 */}
-      <div className="flex justify-center relative z-10 -mb-32 px-5">
-        <Image
-          src="/location_bg.svg"
-          alt="오시는길 배경"
-          width={390}
-          height={340}
-          className="w-full"
-        />
-      </div>
 
       {/* 배경 영역 */}
       <div
-        className="bg-no-repeat bg-center pt-24"
+        className="bg-no-repeat bg-center pt-7"
         style={{
           backgroundImage: "url(/background.png)",
           backgroundSize: "100% 100%",
@@ -243,7 +234,7 @@ export function Location() {
                 </h3>
               </div>
               <div
-                className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+                className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1 pb-24"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <p>제 1주차장 - AW컨벤션 지상, 지하 1층, 2층</p>
@@ -251,6 +242,14 @@ export function Location() {
                 <p>제 3주차장 - AW컨벤션 정문 맞은편 공영주차장</p>
                 <p>제 4주차장 - MK주차타워</p>
               </div>
+
+              <Image
+                src="/location_bg.svg"
+                alt="오시는길 배경"
+                width={390}
+                height={340}
+                className="w-full"
+              />
             </div>
           </div>
         </div>

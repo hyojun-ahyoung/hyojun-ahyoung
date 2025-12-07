@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 
-interface HeroProps {
-  guestName?: string;
-  polite: boolean;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Hero({ guestName, polite }: HeroProps) {
+export function Hero() {
   return (
     <section className="relative w-full overflow-hidden">
+      <div className="flex flex-col items-center text-center">
+        <div
+          className="text-normal pt-11 pb-5 text-[#EFAEC4]"
+          style={{ fontFamily: "var(--font-vesper-libre)" }}
+        >
+          Welcome To Our Wedding Day
+        </div>
+      </div>
       {/* 이미지 영역 */}
       <div className="w-full">
         <Image
