@@ -2,14 +2,23 @@
 
 import { Suspense } from "react";
 import { SnowEffect } from "@/components/ui/SnowEffect";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
+import { Parents } from "@/components/sections/Parents";
 import { DdayCounter } from "@/components/sections/DdayCounter";
 import { Gallery } from "@/components/sections/Gallery";
 import { Calendar } from "@/components/sections/Calendar";
 import { Location } from "@/components/sections/Location";
 import { Account } from "@/components/sections/Account";
+
+// 풀페이지 섹션 래퍼
+function FullPageSection({ children }: { children: React.ReactNode }) {
+  return (
+    <section className="min-h-screen w-full snap-start snap-always flex flex-col items-center justify-center">
+      {children}
+    </section>
+  );
+}
 
 function MainContent() {
   return (
@@ -18,44 +27,38 @@ function MainContent() {
       <SnowEffect />
 
       {/* 메인 콘텐츠 */}
-      <div className="relative z-10 w-full flex flex-col items-center">
-        <Hero />
+      <div className="relative z-10 w-full">
+        <FullPageSection>
+          <Hero />
+        </FullPageSection>
 
-        <section className="h-32" />
-
-        <ScrollReveal>
+        <FullPageSection>
           <Greeting />
-        </ScrollReveal>
+        </FullPageSection>
 
-        <section className="h-32" />
+        <FullPageSection>
+          <Parents />
+        </FullPageSection>
 
-        <ScrollReveal delay={100}>
+        <FullPageSection>
           <Calendar />
-        </ScrollReveal>
+        </FullPageSection>
 
-        <section className="h-10" />
-
-        <ScrollReveal>
+        <FullPageSection>
           <DdayCounter />
-        </ScrollReveal>
+        </FullPageSection>
 
-        <section className="h-10" />
-
-        <ScrollReveal>
+        <FullPageSection>
           <Gallery />
-        </ScrollReveal>
+        </FullPageSection>
 
-        <section className="h-10" />
-
-        <ScrollReveal>
+        <FullPageSection>
           <Location />
-        </ScrollReveal>
+        </FullPageSection>
 
-        <section className="h-32" />
-
-        <ScrollReveal>
+        <FullPageSection>
           <Account />
-        </ScrollReveal>
+        </FullPageSection>
       </div>
     </>
   );
@@ -63,10 +66,8 @@ function MainContent() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center pb-24">
-      <Suspense fallback={null}>
-        <MainContent />
-      </Suspense>
-    </div>
+    <Suspense fallback={null}>
+      <MainContent />
+    </Suspense>
   );
 }
