@@ -110,10 +110,16 @@ body {
 }
 
 .h-real-screen {
+  height: 100vh; /* fallback */
+  height: -webkit-fill-available;
+  height: 100dvh;
   height: calc(var(--vh) * 100);
 }
 
 .min-h-real-screen {
+  min-height: 100vh; /* fallback */
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
   min-height: calc(var(--vh) * 100);
 }
 
