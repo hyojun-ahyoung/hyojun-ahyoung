@@ -15,12 +15,19 @@ import { Account } from "@/components/sections/Account";
 function FullPageSection({
   children,
   isActive,
+  scrollable = false,
 }: {
   children: React.ReactNode;
   isActive: boolean;
+  scrollable?: boolean;
 }) {
   return (
-    <section className="h-real-screen w-full flex flex-col items-center justify-center overflow-hidden shrink-0">
+    <section
+      className={`h-real-screen w-full flex flex-col items-center shrink-0 ${
+        scrollable ? "overflow-y-auto" : "overflow-hidden justify-center"
+      }`}
+      data-scrollable={scrollable}
+    >
       <div
         className={`w-full transition-all duration-1000 ease-out ${
           isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
@@ -33,11 +40,13 @@ function FullPageSection({
 }
 
 function MainContent() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
   const isAnimatingRef = useRef(false);
   const wheelAccumulatorRef = useRef(0);
   const touchStartYRef = useRef(0);
   const sectionCount = 8;
+  const scrollableSectionIndex = 6; // Location 섹션
 
   useEffect(() => {
     const goTo = (index: number) => {
@@ -53,14 +62,57 @@ function MainContent() {
       }, 800);
     };
 
-    // 휠 이벤트 - 누적해서 임계값 넘으면 이동
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (isAnimatingRef.current) return;
+    const getScrollableSection = () => {
+      if (!containerRef.current) return null;
+      const sections = containerRef.current.querySelectorAll(
+        "[data-scrollable='true']"
+      );
+      return sections[0] as HTMLElement | null;
+    };
 
+    // 휠 이벤트
+    const handleWheel = (e: WheelEvent) => {
+      if (isAnimatingRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      // Location 섹션에서 내부 스크롤 처리
+      if (currentSection === scrollableSectionIndex) {
+        const scrollable = getScrollableSection();
+        if (scrollable) {
+          const isAtTop = scrollable.scrollTop <= 0;
+          const isAtBottom =
+            scrollable.scrollTop + scrollable.clientHeight >=
+            scrollable.scrollHeight - 5;
+
+          // 위로 스크롤 & 맨 위면 이전 섹션
+          if (e.deltaY < 0 && isAtTop) {
+            e.preventDefault();
+            wheelAccumulatorRef.current += e.deltaY;
+            if (wheelAccumulatorRef.current < -150) {
+              goTo(currentSection - 1);
+            }
+            return;
+          }
+          // 아래로 스크롤 & 맨 아래면 다음 섹션
+          if (e.deltaY > 0 && isAtBottom) {
+            e.preventDefault();
+            wheelAccumulatorRef.current += e.deltaY;
+            if (wheelAccumulatorRef.current > 150) {
+              goTo(currentSection + 1);
+            }
+            return;
+          }
+          // 그 외에는 내부 스크롤 허용
+          return;
+        }
+      }
+
+      // 일반 섹션
+      e.preventDefault();
       wheelAccumulatorRef.current += e.deltaY;
 
-      // 임계값 (150px 이상 스크롤해야 이동)
       if (wheelAccumulatorRef.current > 150) {
         goTo(currentSection + 1);
       } else if (wheelAccumulatorRef.current < -150) {
@@ -73,8 +125,26 @@ function MainContent() {
       touchStartYRef.current = e.touches[0].clientY;
     };
 
-    // 터치 이동 방지
+    // 터치 이동
     const handleTouchMove = (e: TouchEvent) => {
+      // Location 섹션에서 내부 스크롤 허용
+      if (currentSection === scrollableSectionIndex) {
+        const scrollable = getScrollableSection();
+        if (scrollable) {
+          const isAtTop = scrollable.scrollTop <= 0;
+          const isAtBottom =
+            scrollable.scrollTop + scrollable.clientHeight >=
+            scrollable.scrollHeight - 5;
+          const touchY = e.touches[0].clientY;
+          const diff = touchStartYRef.current - touchY;
+
+          // 맨 위에서 아래로 당기거나, 맨 아래에서 위로 당기면 방지
+          if ((isAtTop && diff < 0) || (isAtBottom && diff > 0)) {
+            e.preventDefault();
+          }
+          return;
+        }
+      }
       e.preventDefault();
     };
 
@@ -84,7 +154,28 @@ function MainContent() {
 
       const diff = touchStartYRef.current - e.changedTouches[0].clientY;
 
-      // 50px 이상 스와이프해야 이동
+      // Location 섹션
+      if (currentSection === scrollableSectionIndex) {
+        const scrollable = getScrollableSection();
+        if (scrollable) {
+          const isAtTop = scrollable.scrollTop <= 0;
+          const isAtBottom =
+            scrollable.scrollTop + scrollable.clientHeight >=
+            scrollable.scrollHeight - 5;
+
+          if (diff < -50 && isAtTop) {
+            goTo(currentSection - 1);
+            return;
+          }
+          if (diff > 50 && isAtBottom) {
+            goTo(currentSection + 1);
+            return;
+          }
+          return;
+        }
+      }
+
+      // 일반 섹션
       if (diff > 50) {
         goTo(currentSection + 1);
       } else if (diff < -50) {
@@ -114,7 +205,7 @@ function MainContent() {
   }, [currentSection, sectionCount]);
 
   return (
-    <div className="h-real-screen overflow-hidden relative">
+    <div ref={containerRef} className="h-real-screen overflow-hidden relative">
       {/* 눈 내리는 효과 */}
       <SnowEffect />
 
@@ -149,7 +240,7 @@ function MainContent() {
           <Gallery />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 6}>
+        <FullPageSection isActive={currentSection === 6} scrollable>
           <Location />
         </FullPageSection>
 
