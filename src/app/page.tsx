@@ -36,7 +36,7 @@ function FullPageSection({ children }: { children: React.ReactNode }) {
   return (
     <section
       ref={ref}
-      className="min-h-screen w-full snap-start snap-always flex flex-col items-center justify-center"
+      className="min-h-real-screen w-full snap-start snap-always flex flex-col items-center justify-center"
     >
       <div
         className={`w-full transition-all duration-2000 ease-out ${
