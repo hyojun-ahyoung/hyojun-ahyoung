@@ -10,7 +10,7 @@ export function Greeting() {
         alt="인사말"
         width={448}
         height={600}
-        className="w-full h-auto -mt-16"
+        className="w-full h-auto"
         priority
       />
     </section>
