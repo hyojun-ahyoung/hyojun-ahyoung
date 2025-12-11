@@ -4,8 +4,6 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { SnowEffect } from "@/components/ui/SnowEffect";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
-import { Parents } from "@/components/sections/Parents";
-import { DdayCounter } from "@/components/sections/DdayCounter";
 import { Gallery } from "@/components/sections/Gallery";
 import { Calendar } from "@/components/sections/Calendar";
 import { Location } from "@/components/sections/Location";
@@ -45,8 +43,8 @@ function MainContent() {
   const isAnimatingRef = useRef(false);
   const wheelAccumulatorRef = useRef(0);
   const touchStartYRef = useRef(0);
-  const sectionCount = 8;
-  const scrollableSectionIndex = 6; // Location 섹션
+  const sectionCount = 6;
+  const scrollableSectionIndex = 4; // Location 섹션
 
   useEffect(() => {
     const goTo = (index: number) => {
@@ -225,26 +223,18 @@ function MainContent() {
         </FullPageSection>
 
         <FullPageSection isActive={currentSection === 2}>
-          <Parents />
-        </FullPageSection>
-
-        <FullPageSection isActive={currentSection === 3}>
           <Calendar />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 4}>
-          <DdayCounter />
-        </FullPageSection>
-
-        <FullPageSection isActive={currentSection === 5}>
+        <FullPageSection isActive={currentSection === 3}>
           <Gallery />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 6} scrollable>
+        <FullPageSection isActive={currentSection === 4} scrollable>
           <Location />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 7}>
+        <FullPageSection isActive={currentSection === 5}>
           <Account />
         </FullPageSection>
       </div>

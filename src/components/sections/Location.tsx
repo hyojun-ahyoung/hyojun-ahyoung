@@ -70,13 +70,7 @@ export function Location() {
       {/* 상단 타이틀 이미지 - 배경 안으로 겹침, 일부는 밖으로 */}
 
       {/* 배경 영역 */}
-      <div
-        className="bg-no-repeat bg-center pt-7"
-        style={{
-          backgroundImage: "url(/background.png)",
-          backgroundSize: "100% 100%",
-        }}
-      >
+      <div className="bg-no-repeat bg-center pt-7">
         {/* 컨텐츠 */}
         <div className="flex flex-col items-center px-6 pt-10 pb-[54px]">
           {/* 제목 */}
