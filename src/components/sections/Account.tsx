@@ -1,13 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ArrowUp, ArrowDown } from "lucide-react";
 import { ACCOUNT_INFO } from "@/constants/wedding-info";
 import { copyToClipboard } from "@/utils/text";
+
+declare global {
+  interface Window {
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Share: {
+        sendDefault: (options: {
+          objectType: string;
+          content: {
+            title: string;
+            description: string;
+            imageUrl: string;
+            link: {
+              mobileWebUrl: string;
+              webUrl: string;
+            };
+          };
+        }) => void;
+      };
+    };
+  }
+}
+
+const KAKAO_APP_KEY = process.env.NEXT_PUBLIC_KAKAO_APP_KEY || "";
 
 export function Account() {
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
   const [groomOpen, setGroomOpen] = useState(false);
   const [brideOpen, setBrideOpen] = useState(false);
+
+  // 카카오 SDK 초기화
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.5.0/kakao.min.js";
+    script.async = true;
+    script.onload = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) {
+        window.Kakao.init(KAKAO_APP_KEY);
+      }
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   const handleCopy = async (accountNumber: string, bank: string) => {
     const text = `${bank} ${accountNumber}`;
@@ -20,7 +63,7 @@ export function Account() {
   };
 
   return (
-    <section className="w-full bg-white px-6">
+    <section className="w-full bg-white px-6 pt-[45px]">
       <div className="max-w-md mx-auto">
         {/* 상단 안내 문구 */}
         <div
@@ -39,19 +82,22 @@ export function Account() {
 
         {/* 신랑측 계좌 */}
         <div className="mb-6">
-          {/* 신랑측 타이틀 - 사용자가 디자인할 부분 */}
+          {/* 신랑측 타이틀 */}
           <button
             onClick={() => setGroomOpen(!groomOpen)}
-            className="w-full py-4 px-6 rounded-full border-2 border-[#628869] flex items-center justify-between text-[#628869] mb-4"
-            style={{
-              fontFamily: "var(--font-gamtan)",
-              filter: "url(#squiggly-account)",
-            }}
+            className="w-full relative flex items-center justify-center mb-4"
+            style={{ fontFamily: "var(--font-gamtan)" }}
           >
-            <span className="flex-1 text-center text-lg font-medium">
+            <img src="/account1.svg" alt="" className="w-full h-auto" />
+            <span
+              className="absolute text-base font-bold text-white text-center leading-[150%]"
+              style={{ letterSpacing: "-0.03em" }}
+            >
               신랑측 계좌번호
             </span>
-            <span className="text-xl">{groomOpen ? "↑" : "↓"}</span>
+            <span className="absolute right-6 text-white">
+              {groomOpen ? <ArrowUp size={20} /> : <ArrowDown size={20} />}
+            </span>
           </button>
 
           {/* 신랑측 계좌 목록 */}
@@ -102,19 +148,22 @@ export function Account() {
 
         {/* 신부측 계좌 */}
         <div>
-          {/* 신부측 타이틀 - 사용자가 디자인할 부분 */}
+          {/* 신부측 타이틀 */}
           <button
             onClick={() => setBrideOpen(!brideOpen)}
-            className="w-full py-4 px-6 rounded-full border-2 border-[#E8A4B8] flex items-center justify-between text-[#E8A4B8] mb-4"
-            style={{
-              fontFamily: "var(--font-gamtan)",
-              filter: "url(#squiggly-account)",
-            }}
+            className="w-full relative flex items-center justify-center mb-4"
+            style={{ fontFamily: "var(--font-gamtan)" }}
           >
-            <span className="flex-1 text-center text-lg font-medium">
+            <img src="/account2.svg" alt="" className="w-full h-auto" />
+            <span
+              className="absolute text-base font-bold text-white text-center leading-[150%]"
+              style={{ letterSpacing: "-0.03em" }}
+            >
               신부측 계좌번호
             </span>
-            <span className="text-xl">{brideOpen ? "↑" : "↓"}</span>
+            <span className="absolute right-6 text-white">
+              {brideOpen ? <ArrowUp size={20} /> : <ArrowDown size={20} />}
+            </span>
           </button>
 
           {/* 신부측 계좌 목록 */}
@@ -161,6 +210,89 @@ export function Account() {
               ))}
             </div>
           )}
+        </div>
+
+        {/* 공유 버튼 영역 */}
+        <div className="flex justify-center gap-[4px] mt-8 mb-[100px]">
+          {/* 링크 복사하기 */}
+          <button
+            onClick={async () => {
+              await navigator.clipboard.writeText(window.location.href);
+              alert("링크가 복사되었습니다!");
+            }}
+            className="relative flex items-center justify-center gap-[4px] bg-white"
+            style={{
+              width: "116px",
+              height: "40px",
+              padding: "10px 24px",
+              borderRadius: "6px",
+            }}
+          >
+            {/* 지글지글 테두리 */}
+            <div
+              className="absolute inset-0 rounded-[6px] pointer-events-none"
+              style={{
+                border: "1px solid #d1d5db",
+                filter: "url(#squiggly-account)",
+              }}
+            />
+            <span
+              className="text-[13px] font-normal text-[#111111] text-center leading-[150%]"
+              style={{
+                fontFamily: "var(--font-gamtan)",
+                letterSpacing: "-0.05em",
+              }}
+            >
+              링크 복사하기
+            </span>
+          </button>
+
+          {/* 카카오톡으로 공유하기 */}
+          <button
+            onClick={() => {
+              // 카카오톡 공유 기능
+              if (typeof window !== "undefined" && window.Kakao) {
+                window.Kakao.Share.sendDefault({
+                  objectType: "feed",
+                  content: {
+                    title: "청첩장",
+                    description: "결혼식에 초대합니다",
+                    imageUrl: "",
+                    link: {
+                      mobileWebUrl: window.location.href,
+                      webUrl: window.location.href,
+                    },
+                  },
+                });
+              }
+            }}
+            className="relative flex items-center justify-center gap-[4px] bg-white"
+            style={{
+              width: "183px",
+              height: "40px",
+              padding: "10px 24px",
+              borderRadius: "6px",
+            }}
+          >
+            {/* 지글지글 테두리 */}
+            <div
+              className="absolute inset-0 rounded-[6px] pointer-events-none"
+              style={{
+                border: "1px solid #d1d5db",
+                filter: "url(#squiggly-account)",
+              }}
+            />
+            <img src="/kakao_icon.svg" alt="카카오톡" className="w-5 h-5" />
+            <span
+              className="text-[13px] font-normal text-[#111111] text-center leading-[150%]"
+              style={{
+                fontFamily: "var(--font-gamtan)",
+                letterSpacing: "-0.05em",
+              }}
+            >
+              카카오톡으로 공유하기
+            </span>
+          </button>
         </div>
 
         {/* 지글지글 필터 */}

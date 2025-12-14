@@ -37,17 +37,16 @@ export function Calendar() {
         <Image
           src="/calendar.svg"
           alt="Wedding Calendar"
-          width={280}
+          width={200}
           height={200}
         />
       </div>
 
       {/* Can't Wait 텍스트 */}
       <p
-        className="text-gray-800 mt-12 whitespace-nowrap"
+        className="text-gray-800 mt-12 whitespace-nowrap text-[35px]"
         style={{
           fontFamily: "var(--font-incheon)",
-          fontSize: "clamp(1.5rem, 6vw, 2.25rem)",
         }}
       >
         Can&apos;t Wait To Say &apos;I Do&apos;

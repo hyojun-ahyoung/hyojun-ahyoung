@@ -17,7 +17,7 @@ export function Location() {
 
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=a9b09af0d54b6ab41658e98244aea8c6&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false`;
     script.async = true;
     document.head.appendChild(script);
 
@@ -75,21 +75,20 @@ export function Location() {
         <div className="flex flex-col items-center px-6 pt-10 pb-[54px]">
           {/* 제목 */}
           <h2
-            className="text-lg font-bold text-center mb-4 leading-tight tracking-normal capitalize text-[#111111]"
+            className="text-[26px] font-bold text-center mb-[52px] leading-tight tracking-normal capitalize text-[#3E8676]"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
             오시는길
           </h2>
 
           {/* 장소명 및 주소 */}
-          <p
-            className="text-sm font-normal text-center mb-4 leading-[160%] text-[#111111]"
+          <div
+            className="text-[18px] font-normal text-center mb-4 leading-[160%] text-[#111111] gap-2"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
-            <span className="font-medium">{venue.name}</span>
-            {"   "}
-            {venue.address}
-          </p>
+            <p>{venue.name}</p>
+            <p>{venue.address}</p>
+          </div>
 
           {/* 카카오 지도 */}
           <div className="w-full max-w-sm mb-3 relative">
@@ -138,7 +137,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/naver.svg" alt="네이버" width={20} height={20} />
+                <Image src="/naver.svg" alt="네이버" width={24} height={24} />
                 네이버지도
               </button>
             </div>
@@ -152,7 +151,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/kakao.svg" alt="카카오" width={20} height={20} />
+                <Image src="/kakao.svg" alt="카카오" width={24} height={24} />
                 카카오내비
               </button>
             </div>
@@ -166,7 +165,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/tmap.svg" alt="티맵" width={20} height={20} />
+                <Image src="/tmap.svg" alt="티맵" width={24} height={24} />
                 티맵
               </button>
             </div>
@@ -177,7 +176,7 @@ export function Location() {
             {/* 지하철 */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Image src="/subway.svg" alt="지하철" width={20} height={20} />
+                <Image src="/subway.svg" alt="지하철" width={24} height={24} />
                 <h3
                   className="text-base font-bold leading-normal tracking-normal text-[#111111]"
                   style={{ fontFamily: "var(--font-gamtan)" }}
@@ -198,7 +197,7 @@ export function Location() {
             {/* 버스 */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Image src="/bus.svg" alt="버스" width={20} height={20} />
+                <Image src="/bus.svg" alt="버스" width={24} height={24} />
                 <h3
                   className="text-base font-bold leading-normal tracking-normal text-[#111111]"
                   style={{ fontFamily: "var(--font-gamtan)" }}
@@ -219,7 +218,7 @@ export function Location() {
             {/* 주차장 */}
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Image src="/parking.svg" alt="주차" width={20} height={20} />
+                <Image src="/parking.svg" alt="주차" width={24} height={24} />
                 <h3
                   className="text-base font-bold leading-normal tracking-normal text-[#111111]"
                   style={{ fontFamily: "var(--font-gamtan)" }}

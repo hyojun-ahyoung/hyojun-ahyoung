@@ -10,13 +10,18 @@ import "swiper/css/pagination";
 
 export function Gallery() {
   return (
-    <section
-      className="w-full bg-white bg-no-repeat bg-center py-12"
-      style={{
-        backgroundImage: "url(/gallery_bg.svg)",
-        backgroundSize: "100% 100%",
-      }}
-    >
+    <section className="w-full bg-white py-12">
+      {/* 갤러리 타이틀 */}
+      <div className="w-full mb-6">
+        <Image
+          src="/gallery_title.svg"
+          alt="Gallery"
+          width={600}
+          height={200}
+          className="w-full h-auto"
+        />
+      </div>
+
       {/* 버튼 크기만큼 패딩 유지: px-4 + 버튼(32px) + gap(4px) = 약 px-13 */}
       <div className="w-full px-13 mb-6">
         {/* Swiper 슬라이더 */}
@@ -29,6 +34,28 @@ export function Gallery() {
               filter: "url(#squiggly-gallery)",
             }}
           />
+
+          {/* SVG 필터 정의 - 테두리보다 먼저 렌더링되도록 여기에 배치 */}
+          <svg width="0" height="0" className="absolute">
+            <defs>
+              <filter id="squiggly-gallery">
+                <feTurbulence
+                  type="turbulence"
+                  baseFrequency="0.02"
+                  numOctaves="3"
+                  seed="1"
+                  result="noise"
+                />
+                <feDisplacementMap
+                  in="SourceGraphic"
+                  in2="noise"
+                  scale="3"
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                />
+              </filter>
+            </defs>
+          </svg>
 
           <Swiper
             modules={[Pagination]}
@@ -58,28 +85,6 @@ export function Gallery() {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* SVG 필터 정의 */}
-          <svg width="0" height="0" className="absolute">
-            <defs>
-              <filter id="squiggly-gallery">
-                <feTurbulence
-                  type="turbulence"
-                  baseFrequency="0.02"
-                  numOctaves="3"
-                  seed="1"
-                  result="noise"
-                />
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="noise"
-                  scale="3"
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                />
-              </filter>
-            </defs>
-          </svg>
         </div>
       </div>
 

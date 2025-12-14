@@ -44,7 +44,7 @@ function MainContent() {
   const wheelAccumulatorRef = useRef(0);
   const touchStartYRef = useRef(0);
   const sectionCount = 6;
-  const scrollableSectionIndex = 4; // Location 섹션
+  const scrollableSections = [4, 5]; // Location, Account 섹션
 
   useEffect(() => {
     const goTo = (index: number) => {
@@ -65,7 +65,10 @@ function MainContent() {
       const sections = containerRef.current.querySelectorAll(
         "[data-scrollable='true']"
       );
-      return sections[0] as HTMLElement | null;
+      // 현재 섹션에 해당하는 스크롤 가능한 요소 찾기
+      const scrollableIndex = scrollableSections.indexOf(currentSection);
+      if (scrollableIndex === -1) return null;
+      return sections[scrollableIndex] as HTMLElement | null;
     };
 
     // 휠 이벤트
@@ -75,8 +78,8 @@ function MainContent() {
         return;
       }
 
-      // Location 섹션에서 내부 스크롤 처리
-      if (currentSection === scrollableSectionIndex) {
+      // 스크롤 가능한 섹션에서 내부 스크롤 처리
+      if (scrollableSections.includes(currentSection)) {
         const scrollable = getScrollableSection();
         if (scrollable) {
           const isAtTop = scrollable.scrollTop <= 0;
@@ -125,8 +128,8 @@ function MainContent() {
 
     // 터치 이동
     const handleTouchMove = (e: TouchEvent) => {
-      // Location 섹션에서 내부 스크롤 허용
-      if (currentSection === scrollableSectionIndex) {
+      // 스크롤 가능한 섹션에서 내부 스크롤 허용
+      if (scrollableSections.includes(currentSection)) {
         const scrollable = getScrollableSection();
         if (scrollable) {
           const isAtTop = scrollable.scrollTop <= 0;
@@ -152,8 +155,8 @@ function MainContent() {
 
       const diff = touchStartYRef.current - e.changedTouches[0].clientY;
 
-      // Location 섹션
-      if (currentSection === scrollableSectionIndex) {
+      // 스크롤 가능한 섹션
+      if (scrollableSections.includes(currentSection)) {
         const scrollable = getScrollableSection();
         if (scrollable) {
           const isAtTop = scrollable.scrollTop <= 0;
@@ -234,7 +237,7 @@ function MainContent() {
           <Location />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 5}>
+        <FullPageSection isActive={currentSection === 5} scrollable>
           <Account />
         </FullPageSection>
       </div>
