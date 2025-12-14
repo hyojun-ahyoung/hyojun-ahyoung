@@ -101,7 +101,13 @@ export function Account() {
           </button>
 
           {/* 신랑측 계좌 목록 */}
-          {groomOpen && (
+          <div
+            className="overflow-hidden transition-all duration-500 ease-in-out"
+            style={{
+              maxHeight: groomOpen ? "500px" : "0",
+              opacity: groomOpen ? 1 : 0,
+            }}
+          >
             <div className="space-y-0">
               {ACCOUNT_INFO.groom.map((account, index) => (
                 <div
@@ -143,7 +149,7 @@ export function Account() {
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
 
         {/* 신부측 계좌 */}
@@ -167,7 +173,13 @@ export function Account() {
           </button>
 
           {/* 신부측 계좌 목록 */}
-          {brideOpen && (
+          <div
+            className="overflow-hidden transition-all duration-500 ease-in-out"
+            style={{
+              maxHeight: brideOpen ? "500px" : "0",
+              opacity: brideOpen ? 1 : 0,
+            }}
+          >
             <div className="space-y-0">
               {ACCOUNT_INFO.bride.map((account, index) => (
                 <div
@@ -209,7 +221,7 @@ export function Account() {
                 </div>
               ))}
             </div>
-          )}
+          </div>
         </div>
 
         {/* 공유 버튼 영역 */}
