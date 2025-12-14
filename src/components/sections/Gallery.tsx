@@ -35,28 +35,6 @@ export function Gallery() {
             }}
           />
 
-          {/* SVG 필터 정의 - 테두리보다 먼저 렌더링되도록 여기에 배치 */}
-          <svg width="0" height="0" className="absolute">
-            <defs>
-              <filter id="squiggly-gallery">
-                <feTurbulence
-                  type="turbulence"
-                  baseFrequency="0.02"
-                  numOctaves="3"
-                  seed="1"
-                  result="noise"
-                />
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="noise"
-                  scale="3"
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                />
-              </filter>
-            </defs>
-          </svg>
-
           <Swiper
             modules={[Pagination]}
             spaceBetween={0}
