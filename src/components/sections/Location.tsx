@@ -134,7 +134,7 @@ export function Location() {
               />
               <button
                 onClick={() => openInMap("naver")}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-2 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <Image src="/naver.svg" alt="네이버" width={24} height={24} />
@@ -148,7 +148,7 @@ export function Location() {
               />
               <button
                 onClick={() => openInMap("kakao")}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-2 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <Image src="/kakao.svg" alt="카카오" width={24} height={24} />
@@ -162,7 +162,7 @@ export function Location() {
               />
               <button
                 onClick={() => openInMap("tmap")}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-2 rounded-xl bg-white text-[13px] font-normal leading-normal tracking-[-0.05em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <Image src="/tmap.svg" alt="티맵" width={24} height={24} />
