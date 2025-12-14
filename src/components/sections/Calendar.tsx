@@ -28,12 +28,12 @@ export function Calendar() {
     >
       {/* 날짜 표시 */}
       <div className="flex flex-col items-center text-center gap-1">
-        <div className="text-2xl font-medium text-gray-800">2026.02.08</div>
-        <div className="text-lg text-gray-600">일요일 오전 11시</div>
+        <div className="text-xl font-bold text-gray-800">2026.02.08</div>
+        <div className="text-xl text-gray-600">일요일 오전 11시</div>
       </div>
 
       {/* 달력 */}
-      <div className="max-w-xs mx-auto flex items-center justify-center mt-6">
+      <div className="max-w-xs mx-auto flex items-center justify-center mt-7">
         <Image
           src="/calendar.svg"
           alt="Wedding Calendar"
@@ -44,8 +44,11 @@ export function Calendar() {
 
       {/* Can't Wait 텍스트 */}
       <p
-        className="text-4xl text-gray-800 mt-12"
-        style={{ fontFamily: "var(--font-hanason)" }}
+        className="text-gray-800 mt-12 whitespace-nowrap"
+        style={{
+          fontFamily: "var(--font-incheon)",
+          fontSize: "clamp(1.5rem, 6vw, 2.25rem)",
+        }}
       >
         Can&apos;t Wait To Say &apos;I Do&apos;
       </p>

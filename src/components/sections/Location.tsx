@@ -186,7 +186,7 @@ export function Location() {
                 </h3>
               </div>
               <div
-                className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+                className="ml-7 text-[15px] font-normal leading-normal tracking-tight text-[#111111] space-y-1"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <p>4호선 고잔역 2번출구</p>
@@ -207,7 +207,7 @@ export function Location() {
                 </h3>
               </div>
               <div
-                className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1"
+                className="ml-7 text-[15px] font-normal leading-normal tracking-tight text-[#111111] space-y-1"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <p>안산 문화숲의 광장 하차 - 88번</p>
@@ -228,7 +228,7 @@ export function Location() {
                 </h3>
               </div>
               <div
-                className="ml-7 text-sm font-normal leading-normal tracking-tight text-[#111111] space-y-1 pb-24"
+                className="ml-7 text-[15px] font-normal leading-normal tracking-tight text-[#111111] space-y-1 pb-24"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
                 <p>제 1주차장 - AW컨벤션 지상, 지하 1층, 2층</p>
@@ -237,13 +237,15 @@ export function Location() {
                 <p>제 4주차장 - MK주차타워</p>
               </div>
 
-              <Image
-                src="/location_bg.svg"
-                alt="오시는길 배경"
-                width={390}
-                height={340}
-                className="w-full"
-              />
+              <div className="pb-14">
+                <Image
+                  src="/location_bg.svg"
+                  alt="오시는길 배경"
+                  width={390}
+                  height={340}
+                  className="w-full"
+                />
+              </div>
             </div>
           </div>
         </div>

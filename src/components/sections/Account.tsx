@@ -28,8 +28,9 @@ export function Account() {
           style={{ fontFamily: "var(--font-gamtan)" }}
         >
           <p className="text-base leading-relaxed">
-            멀리서도 저희를 축하해주시는 마음, 감사히 받겠습니다.
+            멀리서도 저희를 축하해주시는 마음
           </p>
+          <p className="text-base leading-relaxed">감사히 받겠습니다.</p>
           <p className="text-base leading-relaxed">참석이 어려운 분들을 위해</p>
           <p className="text-base leading-relaxed">
             마음을 전할 수 있는 곳을 함께 안내드립니다.
