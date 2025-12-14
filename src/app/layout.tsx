@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
+import { Noto_Sans_KR, Noto_Serif_KR, Vesper_Libre } from "next/font/google";
 import "./globals.css";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 import { ViewportHeight } from "@/components/ui/ViewportHeight";
@@ -17,6 +17,13 @@ const notoSerifKr = Noto_Serif_KR({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-noto-serif",
+  display: "swap",
+});
+
+const vesperLibre = Vesper_Libre({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-vesper",
   display: "swap",
 });
 
@@ -45,7 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${notoSansKr.variable} ${notoSerifKr.variable} font-sans antialiased`}
+        className={`${notoSansKr.variable} ${notoSerifKr.variable} ${vesperLibre.variable} font-sans antialiased`}
       >
         <ViewportHeight />
         <BackgroundMusic />

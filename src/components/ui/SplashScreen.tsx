@@ -45,48 +45,52 @@ export function SplashScreen() {
         isFadingOut ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* 딤 배경 - 폰트 로드 후 블러 적용 */}
+      {/* 흰색 배경 - 스플래시가 사라질 때까지 유지 */}
+      <div className="absolute inset-0 bg-white" />
+
+      {/* 배경 이미지 - 상하 44px, 좌우 24px 안쪽으로 */}
       <div
-        className={`absolute inset-0 transition-all duration-700 ease-out ${
-          isFontsReady ? "bg-white/80 backdrop-blur-md" : "bg-white"
-        }`}
-      />
-      {/* 폰트 로드 전: 숨김 / 로드 후: 콘텐츠 스르륵 나타남 */}
+        className="absolute"
+        style={{
+          top: "44px",
+          bottom: "44px",
+          left: "24px",
+          right: "24px",
+        }}
+      >
+        <Image
+          src="/images/invitation.png"
+          alt="Wedding Invitation"
+          fill
+          priority
+        />
+      </div>
+
+      {/* 텍스트 오버레이 - 폰트 로드 후 스르륵 나타남 */}
       <div
-        className={`relative z-10 bg-white mx-5 w-full max-w-[400px] transform transition-all duration-1500 ease-out ${
+        className={`absolute inset-0 z-10 flex flex-col items-center transform transition-all duration-1500 ease-out ${
           isFontsReady
             ? "opacity-100 scale-100 translate-y-0"
             : "opacity-0 scale-95 translate-y-4"
         } ${isFadingOut ? "scale-95 opacity-0" : ""}`}
+        style={{
+          paddingTop: "200px",
+        }}
       >
-        {/* splash.svg 배경 이미지 */}
-        <div className="relative w-full py-10 px-6">
-          <Image
-            src="/splash.svg"
-            alt="Wedding Invitation"
-            width={400}
-            height={300}
-            className="w-full h-auto"
-            priority
-          />
-
-          {/* 텍스트 오버레이 */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p
-              className="text-lg text-[#628869] italic mb-2"
-              style={{ fontFamily: "var(--font-hanason)" }}
-            >
-              Wedding Invitation
-            </p>
-            {name && (
-              <p
-                className="text-2xl text-[#628869] font-medium"
-                style={{ fontFamily: "var(--font-gamtan)" }}
-              >
-                {name}
-              </p>
-            )}
-          </div>
+        {/* 한글 텍스트 - 상단 */}
+        <div
+          className="flex flex-col items-center"
+          style={{
+            fontFamily: "var(--font-gamtan)",
+            fontWeight: 400,
+            fontSize: "26px",
+            lineHeight: "150%",
+            textAlign: "center",
+            textTransform: "capitalize",
+          }}
+        >
+          {name && <p className="text-[#111111]">{name}</p>}
+          <p className="text-[#111111]">결혼식에 초대합니다</p>
         </div>
       </div>
     </div>
