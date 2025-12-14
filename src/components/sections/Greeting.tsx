@@ -19,27 +19,27 @@ export function Greeting() {
 
       {/* 부모님 정보 */}
       <div
-        className="flex flex-col items-center gap-3 mt-10 text-gray-800"
+        className="flex flex-col items-center gap-3 mt-10 text-gray-800 w-full"
         style={{ fontFamily: "var(--font-gamtan)" }}
       >
-        <div className="flex items-baseline">
-          <div className="flex items-baseline gap-3 text-xl">
-            <span>{groom.fatherName}</span>
-            <span className="text-sm">♥</span>
-            <span>{groom.motherName}</span>
-          </div>
-          <div className="text-normal w-12 text-left ml-1">의 아들</div>
-          <div className="text-xl font-medium ml-3">{groom.fullName}</div>
+        <div className="flex items-baseline justify-center whitespace-nowrap parent-info-text">
+          <span>{groom.fatherName}</span>
+          <span className="parent-info-heart mx-2">♥</span>
+          <span>{groom.motherName}</span>
+          <span className="parent-info-text-small w-12 text-left ml-1">
+            의 아들
+          </span>
+          <span className="font-medium ml-2">{groom.fullName}</span>
         </div>
 
-        <div className="flex items-baseline">
-          <div className="flex items-baseline gap-3 text-xl">
-            <span>{bride.fatherName}</span>
-            <span className="text-sm">♥</span>
-            <span>{bride.motherName}</span>
-          </div>
-          <div className="text-normal w-12 text-left ml-1">의 딸</div>
-          <div className="text-xl font-medium ml-3">{bride.fullName}</div>
+        <div className="flex items-baseline justify-center whitespace-nowrap parent-info-text">
+          <span>{bride.fatherName}</span>
+          <span className="parent-info-heart mx-2">♥</span>
+          <span>{bride.motherName}</span>
+          <span className="parent-info-text-small w-12 text-left ml-1">
+            의 딸
+          </span>
+          <span className="font-medium ml-2">{bride.fullName}</span>
         </div>
       </div>
     </section>

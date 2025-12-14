@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
 import { Gallery } from "@/components/sections/Gallery";
 import { Calendar } from "@/components/sections/Calendar";
+import { DdayCounter } from "@/components/sections/DdayCounter";
 import { Location } from "@/components/sections/Location";
 import { Account } from "@/components/sections/Account";
 
@@ -43,8 +44,8 @@ function MainContent() {
   const isAnimatingRef = useRef(false);
   const wheelAccumulatorRef = useRef(0);
   const touchStartYRef = useRef(0);
-  const sectionCount = 6;
-  const scrollableSections = [4, 5]; // Location, Account 섹션
+  const sectionCount = 7;
+  const scrollableSections = [5, 6]; // Location, Account 섹션
 
   useEffect(() => {
     const goTo = (index: number) => {
@@ -230,14 +231,18 @@ function MainContent() {
         </FullPageSection>
 
         <FullPageSection isActive={currentSection === 3}>
+          <DdayCounter />
+        </FullPageSection>
+
+        <FullPageSection isActive={currentSection === 4}>
           <Gallery />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 4} scrollable>
+        <FullPageSection isActive={currentSection === 5} scrollable>
           <Location />
         </FullPageSection>
 
-        <FullPageSection isActive={currentSection === 5} scrollable>
+        <FullPageSection isActive={currentSection === 6} scrollable>
           <Account />
         </FullPageSection>
       </div>

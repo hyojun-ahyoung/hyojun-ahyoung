@@ -74,10 +74,25 @@ export function SplashScreen() {
             : "opacity-0 scale-95 translate-y-4"
         } ${isFadingOut ? "scale-95 opacity-0" : ""}`}
         style={{
-          paddingTop: "200px",
+          paddingTop: "100px",
         }}
       >
-        {/* 한글 텍스트 - 상단 */}
+        {/* Wedding Invitation 영문 텍스트 */}
+        <p
+          style={{
+            fontFamily: "var(--font-vesper-libre)",
+            fontWeight: 400,
+            fontSize: "16px",
+            lineHeight: "100%",
+            letterSpacing: "-0.01em",
+            textTransform: "capitalize",
+          }}
+          className="text-[#EFAEC4] mb-[96px]"
+        >
+          Wedding Invitation
+        </p>
+
+        {/* 한글 텍스트 */}
         <div
           className="flex flex-col items-center"
           style={{

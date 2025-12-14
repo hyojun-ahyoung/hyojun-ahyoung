@@ -133,6 +133,33 @@ body {
   min-height: calc(var(--vh) * 100);
 }
 
+/* 부모님 정보 반응형 텍스트 */
+.parent-info-text {
+  font-size: 14px;
+}
+
+.parent-info-text-small {
+  font-size: 12px;
+}
+
+.parent-info-heart {
+  font-size: 10px;
+}
+
+@media (min-width: 380px) {
+  .parent-info-text {
+    font-size: 18px;
+  }
+
+  .parent-info-text-small {
+    font-size: 14px;
+  }
+
+  .parent-info-heart {
+    font-size: 12px;
+  }
+}
+
 /* 스크롤바 스타일링 (데스크톱) */
 @media (min-width: 1024px) {
   ::-webkit-scrollbar {
