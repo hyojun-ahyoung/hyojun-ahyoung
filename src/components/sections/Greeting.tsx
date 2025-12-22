@@ -1,46 +1,75 @@
 "use client";
 
 import Image from "next/image";
-import { WEDDING_INFO } from "@/constants/wedding-info";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function Greeting() {
-  const { groom, bride } = WEDDING_INFO;
-
   return (
-    <section className="flex flex-col items-center w-full px-16">
-      <Image
-        src="/images/text.png"
-        alt="인사말"
-        width={448}
-        height={600}
-        className="w-full h-auto"
-        priority
-      />
+    <section className="flex flex-col items-center w-full mt-[100px] gap-[40px] overflow-hidden">
+      {/* 1. First Image */}
+      <div className="w-full px-[30px] flex justify-center">
+        <ScrollReveal animation="fade-up" duration={1200}>
+          <Image
+            src="/images/first_image.png"
+            alt="Wedding Photo 1"
+            width={400}
+            height={300}
+            className="w-full h-auto object-cover rounded-sm shadow-md"
+            priority
+          />
+        </ScrollReveal>
+      </div>
 
-      {/* 부모님 정보 */}
-      <div
-        className="flex flex-col items-center gap-3 mt-10 text-gray-800 w-full"
-        style={{ fontFamily: "var(--font-gamtan)" }}
-      >
-        <div className="flex items-baseline justify-center whitespace-nowrap parent-info-text">
-          <span>{groom.fatherName}</span>
-          <span className="parent-info-heart mx-2">♥</span>
-          <span>{groom.motherName}</span>
-          <span className="parent-info-text-small w-12 text-left ml-1">
-            의 아들
-          </span>
-          <span className="font-medium ml-2">{groom.fullName}</span>
-        </div>
+      {/* 2. First Text */}
+      <div className="w-full flex justify-center px-4">
+        <ScrollReveal animation="fade-in" delay={300} duration={1500}>
+          <Image
+            src="/first_text.svg"
+            alt="First Greeting Text"
+            width={280}
+            height={100}
+            className="w-auto h-auto"
+          />
+        </ScrollReveal>
+      </div>
 
-        <div className="flex items-baseline justify-center whitespace-nowrap parent-info-text">
-          <span>{bride.fatherName}</span>
-          <span className="parent-info-heart mx-2">♥</span>
-          <span>{bride.motherName}</span>
-          <span className="parent-info-text-small w-12 text-left ml-1">
-            의 딸
-          </span>
-          <span className="font-medium ml-2">{bride.fullName}</span>
-        </div>
+      {/* 3. Second Image */}
+      <div className="w-full">
+        <ScrollReveal animation="zoom-in" duration={1500}>
+          <Image
+            src="/images/second_image.png"
+            alt="Wedding Photo 2"
+            width={400}
+            height={300}
+            className="w-full h-auto object-cover"
+          />
+        </ScrollReveal>
+      </div>
+
+      {/* 4. Second Text */}
+      <div className="w-full flex justify-center px-4">
+        <ScrollReveal animation="fade-in" delay={300} duration={1500}>
+          <Image
+            src="/second_text.svg"
+            alt="Second Greeting Text"
+            width={280}
+            height={100}
+            className="w-auto h-auto"
+          />
+        </ScrollReveal>
+      </div>
+
+      {/* 5. Third Image */}
+      <div className="w-full px-[68px] flex justify-center">
+        <ScrollReveal animation="fade-up" duration={1200}>
+          <Image
+            src="/images/third_image.png"
+            alt="Wedding Photo 3"
+            width={300}
+            height={400}
+            className="w-full h-auto object-cover rounded-sm shadow-md"
+          />
+        </ScrollReveal>
       </div>
     </section>
   );

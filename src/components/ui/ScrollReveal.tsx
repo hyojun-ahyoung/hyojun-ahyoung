@@ -1,36 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface ScrollRevealProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number; // ms
+  children: React.ReactNode;
+  animation?: "fade-up" | "fade-in" | "zoom-in" | "slide-left" | "slide-right";
+  delay?: number;
+  duration?: number;
+  threshold?: number;
+  className?: string; // 추가적인 스타일링을 위해
 }
 
 export function ScrollReveal({
   children,
-  className = "",
+  animation = "fade-up",
   delay = 0,
+  duration = 1000,
+  threshold = 0.15,
+  className = "",
 }: ScrollRevealProps) {
-  const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          // 딜레이 적용
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
-          // 한 번 보이면 관찰 중지
-          observer.unobserve(entry.target);
-        }
+        setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.1, // 10% 보이면 트리거
-        rootMargin: "0px 0px -50px 0px", // 하단에서 50px 위에서 트리거
+        threshold: threshold,
+        rootMargin: "0px 0px -50px 0px",
       }
     );
 
@@ -39,16 +38,41 @@ export function ScrollReveal({
     }
 
     return () => {
-      observer.disconnect();
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
     };
-  }, [delay]);
+  }, [threshold]);
+
+  const getAnimationClass = () => {
+    if (!isVisible) {
+      switch (animation) {
+        case "fade-up":
+          return "opacity-0 translate-y-16";
+        case "zoom-in":
+          return "opacity-0 scale-90";
+        case "fade-in":
+          return "opacity-0";
+        case "slide-left":
+          return "opacity-0 -translate-x-16";
+        case "slide-right":
+          return "opacity-0 translate-x-16";
+        default:
+          return "opacity-0 translate-y-10";
+      }
+    }
+
+    return "opacity-100 translate-y-0 translate-x-0 scale-100";
+  };
 
   return (
     <div
       ref={ref}
-      className={`w-full transition-all duration-700 ease-out ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      } ${className}`}
+      className={`transition-all ease-out transform ${getAnimationClass()} ${className}`}
+      style={{
+        transitionDuration: `${duration}ms`,
+        transitionDelay: `${delay}ms`,
+      }}
     >
       {children}
     </div>

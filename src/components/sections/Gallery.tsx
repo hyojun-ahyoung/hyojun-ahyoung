@@ -1,88 +1,150 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import { GALLERY_IMAGES } from "@/constants/wedding-info";
+import { Pagination, Navigation } from "swiper/modules";
+import { createPortal } from "react-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// 이미지 목록 생성 (0.jpg ~ 12.jpg)
+const GALLERY_IMAGES = Array.from({ length: 13 }, (_, i) => ({
+  src: `/images/gallery/${i}.jpg`,
+  alt: `Gallery Image ${i}`,
+}));
 
 export function Gallery() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setCurrentIndex(index);
+    setIsOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <section className="w-full bg-white py-12">
-      {/* 갤러리 타이틀 */}
-      <div className="w-full mb-6">
-        <Image
-          src="/gallery_title.svg"
-          alt="Gallery"
-          width={600}
-          height={200}
-          className="w-full h-auto"
-        />
-      </div>
+    <section className="w-full bg-white pb-12 mt-[100px] flex flex-col items-center">
 
-      {/* 버튼 크기만큼 패딩 유지: px-4 + 버튼(32px) + gap(4px) = 약 px-13 */}
-      <div className="w-full px-13 mb-6">
-        {/* Swiper 슬라이더 */}
-        <div className="relative w-full">
-          {/* 지글지글 프레임 */}
-          <div
-            className="absolute inset-0 rounded-lg pointer-events-none z-10"
-            style={{
-              border: "4px solid #E8A4B8",
-              filter: "url(#squiggly-gallery)",
-            }}
+
+      <div className="w-full flex flex-col gap-0 px-0">
+        {/* 메인 이미지 (1번 - 인덱스 0) */}
+        <div 
+          className="w-full relative cursor-pointer" 
+          onClick={() => openLightbox(0)}
+        >
+          <Image
+            src={GALLERY_IMAGES[0].src}
+            alt={GALLERY_IMAGES[0].alt}
+            width={400} // Approximate responsive width
+            height={600}
+            className="w-full h-auto object-cover"
+            priority
           />
+        </div>
 
-          <Swiper
-            modules={[Pagination]}
-            spaceBetween={0}
-            slidesPerView={1}
-            loop={true}
-            pagination={{
-              clickable: true,
-              el: ".gallery-pagination",
-              bulletClass: "gallery-bullet",
-              bulletActiveClass: "gallery-bullet-active",
-            }}
-            className="rounded-lg overflow-hidden"
-          >
-            {GALLERY_IMAGES.map((image, index) => (
-              <SwiperSlide key={index}>
-                <div className="relative aspect-3/4 bg-gray-100">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                    sizes="400px"
-                    priority={index === 0}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        {/* 그리드 (2번 ~ 12번) - 3열 */}
+        <div className="w-full grid grid-cols-3 gap-0">
+          {GALLERY_IMAGES.slice(1).map((image, i) => {
+            const imageIndex = i + 1;
+            const isTopAligned = [1, 2, 5, 6, 7, 10].includes(imageIndex);
+            
+            return (
+              <div
+                key={imageIndex}
+                className="relative aspect-square cursor-pointer overflow-hidden bg-gray-100"
+                onClick={() => openLightbox(imageIndex)}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className={`object-cover transition-transform duration-300 hover:scale-110 ${
+                    isTopAligned ? "object-top" : "object-center"
+                  }`}
+                  sizes="(max-width: 768px) 33vw, 125px"
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
-      {/* 페이지네이션 Dots */}
-      <div className="gallery-pagination flex justify-center gap-2" />
+      {/* Lightbox Modal - Portal 사용 */}
+      {isOpen &&
+        createPortal(
+          <div className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center h-[100svh]">
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 text-white p-2 z-[10000] rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
 
-      {/* Swiper 커스텀 스타일 */}
-      <style jsx global>{`
-        .gallery-bullet {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: #d1d5db;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .gallery-bullet-active {
-          background-color: #e8a4b8 !important;
-        }
-      `}</style>
+            <Swiper
+              modules={[Pagination, Navigation]}
+              initialSlide={currentIndex}
+              spaceBetween={20}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              className="w-full h-full max-w-4xl"
+            >
+              {GALLERY_IMAGES.map((image, index) => (
+                <SwiperSlide key={index} className="flex items-center justify-center">
+                  <div className="relative w-full h-full flex items-center justify-center p-4">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={800}
+                      height={1200}
+                      className="max-w-full max-h-[90svh] object-contain"
+                      priority={index === currentIndex}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <style jsx global>{`
+              .swiper-pagination-bullet {
+                background: #fff;
+                opacity: 0.5;
+              }
+              .swiper-pagination-bullet-active {
+                background: #E8A4B8;
+                opacity: 1;
+              }
+              .swiper-button-next, .swiper-button-prev {
+                color: white;
+              }
+              .swiper-button-next::after, .swiper-button-prev::after {
+                font-size: 24px;
+                font-weight: bold;
+              }
+            `}</style>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

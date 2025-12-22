@@ -12,41 +12,6 @@ export function CoupleInfo({ polite }: CoupleInfoProps) {
   const { getText } = usePoliteText(polite);
   const { groom, bride, message } = WEDDING_INFO;
 
-  const PersonCard = ({
-    person,
-    role,
-  }: {
-    person: typeof groom;
-    role: string;
-  }) => (
-    <div className="flex-1 text-center">
-      <div className="mb-6">
-        <p className="text-sm sm:text-base text-gray-500 mb-3">{role}</p>
-        <h3 className="text-2xl sm:text-3xl font-light text-gray-800">
-          {person.fullName}
-        </h3>
-      </div>
-      {(person.fatherName || person.motherName) && (
-        <div className="text-sm sm:text-base text-gray-600 space-y-1 mb-6">
-          {person.fatherName && (
-            <p>
-              {person.fatherName} · {person.motherName}
-              {person.isFirstChild ? "의 장남" : "의 차남"}
-            </p>
-          )}
-        </div>
-      )}
-      {person.phone && (
-        <a
-          href={`tel:${person.phone}`}
-          className="inline-block mt-4 px-6 py-3 text-sm sm:text-base text-gray-700 border border-gray-300 rounded-full hover:bg-gray-50 active:bg-gray-100 transition-colors"
-        >
-          연락하기
-        </a>
-      )}
-    </div>
-  );
-
   return (
     <section className="w-full py-12 md:py-16 px-6 bg-gray-50/50">
       <div className="max-w-4xl mx-auto">
@@ -72,3 +37,38 @@ export function CoupleInfo({ polite }: CoupleInfoProps) {
     </section>
   );
 }
+
+const PersonCard = ({
+  person,
+  role,
+}: {
+  person: typeof WEDDING_INFO.groom;
+  role: string;
+}) => (
+  <div className="flex-1 text-center">
+    <div className="mb-6">
+      <p className="text-sm sm:text-base text-gray-500 mb-3">{role}</p>
+      <h3 className="text-2xl sm:text-3xl font-light text-gray-800">
+        {person.fullName}
+      </h3>
+    </div>
+    {(person.fatherName || person.motherName) && (
+      <div className="text-sm sm:text-base text-gray-600 space-y-1 mb-6">
+        {person.fatherName && (
+          <p>
+            {person.fatherName} · {person.motherName}
+            {person.isFirstChild ? "의 장남" : "의 차남"}
+          </p>
+        )}
+      </div>
+    )}
+    {person.phone && (
+      <a
+        href={`tel:${person.phone}`}
+        className="inline-block mt-4 px-6 py-3 text-sm sm:text-base text-gray-700 border border-gray-300 rounded-full hover:bg-gray-50 active:bg-gray-100 transition-colors"
+      >
+        연락하기
+      </a>
+    )}
+  </div>
+);

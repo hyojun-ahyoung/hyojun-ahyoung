@@ -61,6 +61,7 @@
   --font-sans: var(--font-noto-sans);
   --font-serif: var(--font-noto-serif);
   --font-vesper: "Vesper Libre", serif;
+  --font-gamtan: "GamtanRoad Batang", serif;
 }
 
 * {
