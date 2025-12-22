@@ -24,7 +24,7 @@ export function Greeting() {
       <div className="w-full flex justify-center px-4">
         <ScrollReveal animation="fade-in" delay={300} duration={1500}>
           <Image
-            src="/first_text.svg"
+            src="/images/first_text.png"
             alt="First Greeting Text"
             width={280}
             height={100}
@@ -50,7 +50,7 @@ export function Greeting() {
       <div className="w-full flex justify-center px-4">
         <ScrollReveal animation="fade-in" delay={300} duration={1500}>
           <Image
-            src="/second_text.svg"
+            src="/images/second_text.png"
             alt="Second Greeting Text"
             width={280}
             height={100}

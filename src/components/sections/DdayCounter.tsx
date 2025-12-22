@@ -22,32 +22,11 @@ export function DdayCounter() {
   };
 
   return (
-    <section
-      className="flex flex-col items-center w-full bg-white px-6"
-      style={{ fontFamily: "var(--font-gamtan)" }}
-    >
-      {/* We Can't Wait To Say "I Do" 텍스트 */}
-      <p
-        className="text-[#EFAEC4] whitespace-nowrap text-4xl leading-[150%]"
-        style={{
-          fontFamily: "var(--font-incheon)",
-        }}
-      >
-        We Can&apos;t Wait To Say
-      </p>
-      <p
-        className="text-[#EFAEC4] text-4xl whitespace-nowrap leading-[150%]"
-        style={{
-          fontFamily: "var(--font-incheon)",
-        }}
-      >
-        &quot;I Do&quot;
-      </p>
-
+    <section style={{ fontFamily: "var(--font-gamtan)" }}>
       {/* D-day 카운터 */}
-      <div className="w-full max-w-sm relative mx-auto mt-40">
+      <div className="w-full max-w-sm relative mx-auto mt-40 mb-20">
         {/* Characters Area */}
-        <div className="absolute bottom-full left-0 w-full h-32 pointer-events-none">
+        <div className="absolute bottom-full left-0 w-full h-40 pointer-events-none">
           {/* Groom - Moves with progress */}
           <div
             className="absolute bottom-0 flex flex-col items-center"
@@ -56,21 +35,13 @@ export function DdayCounter() {
               transform: "translateX(calc(-50% - 20px))",
             }}
           >
-            {/* D-day 텍스트 */}
-            <div
-              className="flex items-center gap-1 mb-1 translate-x-4"
-              style={{ fontFamily: "var(--font-hanason)" }}
-            >
-              <span className="text-xl text-gray-800">{getDdayText()}</span>
-              <span className="text-lg">💦</span>
-            </div>
-            <div className="relative w-24 h-24">
+            <div className="relative w-32 h-32">
               <Image
                 src="/images/jun.png"
                 alt="Groom"
                 fill
                 className="object-contain"
-                sizes="50px"
+                sizes="128px"
                 priority
               />
             </div>
@@ -78,13 +49,13 @@ export function DdayCounter() {
 
           {/* Bride - Static at end */}
           <div className="absolute bottom-0 right-0 transform translate-x-[20%]">
-            <div className="relative w-24 h-24">
+            <div className="relative w-32 h-32">
               <Image
                 src="/images/amy.png"
                 alt="Bride"
                 fill
                 className="object-contain"
-                sizes="55px"
+                sizes="128px"
                 priority
               />
             </div>
@@ -106,24 +77,32 @@ export function DdayCounter() {
                   alt="Heart"
                   fill
                   className="object-contain drop-shadow-md"
-                  sizes="32px"
+                  sizes="56px"
                 />
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* 결혼식 남은 날 */}
-      <p
-        className="text-gray-600 mt-8 text-[19px] font-normal leading-[120%] text-center capitalize"
-        style={{ fontFamily: "var(--font-gamtan)" }}
-      >
-        {WEDDING_INFO.groom.name}{" "}
-        <span className="text-[#EFAEC4] text-sm">♥</span>{" "}
-        {WEDDING_INFO.bride.name}의 결혼식이{" "}
-        <span className="text-[#EFAEC4] font-bold">{dday}일</span> 남았습니다.
-      </p>
+        {/* Text Below Bar - Moves with progress */}
+        <div className="absolute top-full mt-6 left-0 w-full pointer-events-none">
+          <div
+            className="absolute top-0 flex flex-col items-center"
+            style={{
+              left: `${progress}%`,
+              transform: "translateX(-50%)",
+            }}
+          >
+            <div
+              className="flex items-center gap-1"
+              style={{ fontFamily: "var(--font-hanason)" }}
+            >
+              <span className="text-2xl text-gray-800">{getDdayText()}</span>
+              <span className="text-xl">💦</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
