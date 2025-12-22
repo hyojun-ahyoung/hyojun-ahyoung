@@ -21,7 +21,7 @@ export function Greeting() {
       </div>
 
       {/* 2. First Text */}
-      <div className="w-full flex justify-center px-4">
+      <div className="w-full flex justify-center px-16">
         <ScrollReveal animation="fade-in" delay={300} duration={1500}>
           <Image
             src="/images/first_text.png"
@@ -47,7 +47,7 @@ export function Greeting() {
       </div>
 
       {/* 4. Second Text */}
-      <div className="w-full flex justify-center px-4">
+      <div className="w-full flex justify-center px-16">
         <ScrollReveal animation="fade-in" delay={300} duration={1500}>
           <Image
             src="/images/second_text.png"
