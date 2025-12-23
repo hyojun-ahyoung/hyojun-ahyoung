@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import { ACCOUNT_INFO } from "@/constants/wedding-info";
 import { copyToClipboard } from "@/utils/text";
+import Image from "next/image";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 declare global {
   interface Window {
@@ -63,13 +65,21 @@ export function Account() {
   };
 
   return (
-    <section className="w-full bg-white px-6 pt-[45px]">
+    <section className="w-full bg-white px-5 pt-[45px]">
       <div className="max-w-md mx-auto">
         {/* 상단 안내 문구 */}
-        <div
+        <ScrollReveal
           className="text-center mb-8 text-[#111111]"
           style={{ fontFamily: "var(--font-gamtan)" }}
         >
+          <div className="flex justify-center mb-6">
+            <Image
+              src="/thanks_title.svg"
+              alt="마음을 전하는 곳"
+              width={180}
+              height={45}
+            />
+          </div>
           <p className="text-base leading-relaxed">
             멀리서도 저희를 축하해주시는 마음
           </p>
@@ -78,10 +88,10 @@ export function Account() {
           <p className="text-base leading-relaxed">
             마음을 전할 수 있는 곳을 함께 안내드립니다.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* 신랑측 계좌 */}
-        <div className="mb-6">
+        <ScrollReveal delay={200} className="mb-3">
           {/* 신랑측 타이틀 */}
           <button
             onClick={() => setGroomOpen(!groomOpen)}
@@ -150,10 +160,10 @@ export function Account() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* 신부측 계좌 */}
-        <div>
+        <ScrollReveal delay={300}>
           {/* 신부측 타이틀 */}
           <button
             onClick={() => setBrideOpen(!brideOpen)}
@@ -222,23 +232,28 @@ export function Account() {
               ))}
             </div>
           </div>
-        </div>
+        </ScrollReveal>
+
+        {/* 배경 이미지 */}
+        <ScrollReveal delay={400} className="mt-10">
+          <Image
+            src="/location_bg.svg"
+            alt="배경"
+            width={390}
+            height={340}
+            className="w-full"
+          />
+        </ScrollReveal>
 
         {/* 공유 버튼 영역 */}
-        <div className="flex justify-center gap-[4px] mt-8 mb-[100px]">
+        <ScrollReveal delay={500} className="flex justify-center gap-[10px] mt-8 mb-[100px]">
           {/* 링크 복사하기 */}
           <button
             onClick={async () => {
               await navigator.clipboard.writeText(window.location.href);
               alert("링크가 복사되었습니다!");
             }}
-            className="relative flex items-center justify-center gap-[4px] bg-white"
-            style={{
-              width: "116px",
-              height: "40px",
-              padding: "10px 24px",
-              borderRadius: "6px",
-            }}
+            className="relative flex-[2] flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -249,7 +264,7 @@ export function Account() {
               }}
             />
             <span
-              className="text-[13px] font-normal text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
@@ -278,13 +293,7 @@ export function Account() {
                 });
               }
             }}
-            className="relative flex items-center justify-center gap-[4px] bg-white"
-            style={{
-              width: "183px",
-              height: "40px",
-              padding: "10px 24px",
-              borderRadius: "6px",
-            }}
+            className="relative flex-[3] flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -296,7 +305,7 @@ export function Account() {
             />
             <img src="/kakao_icon.svg" alt="카카오톡" className="w-5 h-5" />
             <span
-              className="text-[13px] font-normal text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
@@ -305,7 +314,7 @@ export function Account() {
               카카오톡으로 공유하기
             </span>
           </button>
-        </div>
+        </ScrollReveal>
 
         {/* 지글지글 필터 */}
         <svg width="0" height="0" className="absolute">

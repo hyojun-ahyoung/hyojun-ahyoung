@@ -4,6 +4,8 @@ import Image from "next/image";
 import { WEDDING_INFO } from "@/constants/wedding-info";
 import { calculateDday } from "@/utils/text";
 
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+
 export function DdayCounter() {
   const dday = calculateDday(WEDDING_INFO.date);
 
@@ -24,7 +26,7 @@ export function DdayCounter() {
   return (
     <section style={{ fontFamily: "var(--font-gamtan)" }}>
       {/* D-day 카운터 */}
-      <div className="w-full max-w-sm relative mx-auto mt-40 mb-20">
+      <ScrollReveal className="w-full max-w-sm relative mx-auto mt-40 mb-20">
         {/* Characters Area */}
         <div className="absolute bottom-full left-0 w-full h-40 pointer-events-none">
           {/* Groom - Moves with progress */}
@@ -35,7 +37,7 @@ export function DdayCounter() {
               transform: "translateX(calc(-50% - 20px))",
             }}
           >
-            <div className="relative w-32 h-32">
+            <div className="relative w-28 h-28">
               <Image
                 src="/images/jun.png"
                 alt="Groom"
@@ -48,7 +50,7 @@ export function DdayCounter() {
           </div>
 
           {/* Bride - Static at end */}
-          <div className="absolute bottom-0 right-0 transform translate-x-[20%]">
+          <div className="absolute -bottom-2 right-0 transform translate-x-[20%]">
             <div className="relative w-32 h-32">
               <Image
                 src="/images/amy.png"
@@ -63,10 +65,10 @@ export function DdayCounter() {
         </div>
 
         {/* Bar Container */}
-        <div className="h-3 w-full bg-gray-200 rounded-full relative overflow-visible z-20">
+        <div className="h-2 w-full bg-gray-200 rounded-full relative overflow-visible z-20">
           {/* Filled Bar */}
           <div
-            className="h-full bg-pink-300 rounded-full relative"
+            className="h-full bg-[#FFC2D7] rounded-full relative"
             style={{ width: `${progress}%` }}
           >
             {/* Heart Icon at the tip of the bar */}
@@ -85,7 +87,7 @@ export function DdayCounter() {
         </div>
 
         {/* Text Below Bar - Moves with progress */}
-        <div className="absolute top-full mt-6 left-0 w-full pointer-events-none">
+        <div className="absolute top-full mt-4 left-0 w-full pointer-events-none">
           <div
             className="absolute top-0 flex flex-col items-center"
             style={{
@@ -102,7 +104,7 @@ export function DdayCounter() {
             </div>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

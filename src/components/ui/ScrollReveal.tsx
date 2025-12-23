@@ -8,7 +8,8 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   threshold?: number;
-  className?: string; // 추가적인 스타일링을 위해
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 export function ScrollReveal({
@@ -18,6 +19,7 @@ export function ScrollReveal({
   duration = 1000,
   threshold = 0.15,
   className = "",
+  style,
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -72,6 +74,7 @@ export function ScrollReveal({
       style={{
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
+        ...style,
       }}
     >
       {children}

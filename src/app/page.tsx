@@ -64,38 +64,22 @@ function MainContent() {
         <section>
            <Hero />
         </section>
-
         <FadeInSection>
           <WeddingDateInfo />
         </FadeInSection>
-
         <section className="py-10">
           <Greeting />
         </section>
-
         <ParentProfile />
-
         <Gallery />
-
         <StickerPhotos />
-
         <FadeInSection>
-            <Calendar />
-          </FadeInSection>
-
+          <Calendar />
+        </FadeInSection>
+        
         <DdayCounter />
-
-        <section className="py-10">
-          <FadeInSection>
-            <Location />
-          </FadeInSection>
-        </section>
-
-        <section className="py-10 pb-20">
-          <FadeInSection>
-            <Account />
-          </FadeInSection>
-        </section>
+        <Location />  
+        <Account />
       </div>
     </div>
   );
