@@ -68,7 +68,7 @@ export function BackgroundMusic() {
       {/* 재생/일시정지 버튼 */}
       <button
         onClick={togglePlay}
-        className="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        className="fixed top-6 right-6 z-40 w-[30px] h-[30px] rounded-full bg-white shadow-lg border border-[#3E8676] flex items-center justify-center transition-all hover:scale-110 active:scale-95"
         aria-label={isPlaying ? "음악 일시정지" : "음악 재생"}
       >
         {isPlaying ? (
@@ -78,13 +78,13 @@ export function BackgroundMusic() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#E8A4B8"
+            stroke="#3E8676"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <rect x="6" y="4" width="4" height="16" fill="#E8A4B8" />
-            <rect x="14" y="4" width="4" height="16" fill="#E8A4B8" />
+            <rect x="7" y="4" width="2" height="16" fill="#3E8676" />
+            <rect x="15" y="4" width="2" height="16" fill="#3E8676" />
           </svg>
         ) : (
           // 재생 아이콘
@@ -92,13 +92,13 @@ export function BackgroundMusic() {
             width="20"
             height="20"
             viewBox="0 0 24 24"
-            fill="#E8A4B8"
-            stroke="#E8A4B8"
-            strokeWidth="2"
+            fill="#3E8676"
+            stroke="#3E8676"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <polygon points="5 3 19 12 5 21 5 3" />
+            <polygon points="9 6 18 12 9 18" />
           </svg>
         )}
       </button>
