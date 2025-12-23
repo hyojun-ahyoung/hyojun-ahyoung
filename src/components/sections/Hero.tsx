@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section className="relative w-full flex flex-col items-center">
       {/* 타이틀 이미지 */}
-      <div className="absolute top-[40px] z-20 w-full px-6">
+      <div className="absolute top-4 z-20 w-full px-6">
         <Image
           src="/images/main_title.png"
           alt="Save the Date"
@@ -18,7 +18,7 @@ export function Hero() {
       </div>
 
       {/* 메인 이미지 */}
-      <div className="relative mt-[130px] mx-3 w-[calc(100%-24px)]">
+      <div className="relative mt-36 mx-3 w-[calc(100%-24px)]">
         <Image
           src="/images/main.png"
           alt="Wedding Main"
