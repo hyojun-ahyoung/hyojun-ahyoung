@@ -3,12 +3,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import { createPortal } from "react-dom";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 // 이미지 목록 생성 (0.jpg ~ 12.jpg)
 const GALLERY_IMAGES = Array.from({ length: 13 }, (_, i) => ({
@@ -82,30 +81,21 @@ export function Gallery() {
           <div className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center h-[100svh]">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 text-white p-2 z-[10000] rounded-full bg-black/50 hover:bg-black/70 transition-colors"
+              className="absolute top-4 right-4 z-[10000]"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
+              <Image
+                src="/gallery_close.svg"
+                alt="닫기"
+                width={30}
+                height={30}
+              />
             </button>
 
             <Swiper
-              modules={[Pagination, Navigation]}
+              modules={[Pagination]}
               initialSlide={currentIndex}
               spaceBetween={20}
               slidesPerView={1}
-              navigation
               pagination={{ clickable: true }}
               className="w-full h-full max-w-4xl"
             >
@@ -134,12 +124,8 @@ export function Gallery() {
                 background: #E8A4B8;
                 opacity: 1;
               }
-              .swiper-button-next, .swiper-button-prev {
-                color: white;
-              }
-              .swiper-button-next::after, .swiper-button-prev::after {
-                font-size: 24px;
-                font-weight: bold;
+              .swiper-pagination {
+                bottom: 24px !important;
               }
             `}</style>
           </div>,
