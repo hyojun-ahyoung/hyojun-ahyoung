@@ -5,6 +5,7 @@ import "./globals.css";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 import { ViewportHeight } from "@/components/ui/ViewportHeight";
 import { BackgroundMusic } from "@/components/ui/BackgroundMusic";
+import { WEDDING_INFO } from "@/constants/wedding-info";
 
 const notoSansKr = Noto_Sans_KR({
   weight: ["300", "400", "500", "700"],
@@ -27,14 +28,29 @@ const vesperLibre = Vesper_Libre({
   display: "swap",
 });
 
+const { groom, bride, date } = WEDDING_INFO;
+const days = ["일", "월", "화", "수", "목", "금", "토"];
+const dayOfWeek = days[date.getDay()];
+const hour = date.getHours();
+const minute = date.getMinutes();
+const ampm = hour >= 12 ? "오후" : "오전";
+const displayHour = hour > 12 ? hour - 12 : hour;
+const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${minute > 0 ? ` ${minute}분` : ""}`;
+
 export const metadata: Metadata = {
-  title: "효준 ♥ 아영 결혼식에 초대합니다",
-  description:
-    "2025년 2월 15일 오후 2시, 저희 두 사람의 소중한 순간에 함께해 주세요",
+  title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
+  description: `예식일: ${dateStr}`,
   openGraph: {
-    title: "효준 ♥ 아영 결혼식",
-    description: "2025년 2월 15일 오후 2시",
+    title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
+    description: `예식일: ${dateStr}`,
     type: "website",
+    images: [
+      {
+        url: "/images/gallery/5.jpg",
+        width: 900,
+        height: 1332,
+      },
+    ],
   },
   icons: {
     icon: [
