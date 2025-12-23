@@ -58,9 +58,9 @@ export function Location() {
       kakao: `https://map.kakao.com/link/map/${encodeURIComponent(
         name
       )},${latitude},${longitude}`,
-      tmap: `https://apis.openapi.sk.com/tmap/app/routes?appKey=&name=${encodeURIComponent(
+      tmap: `tmap://route?goalname=${encodeURIComponent(
         name
-      )}&lon=${longitude}&lat=${latitude}`,
+      )}&goalx=${longitude}&goaly=${latitude}`,
     };
 
     window.open(urls[type], "_blank");
