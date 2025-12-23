@@ -75,7 +75,7 @@ export function Location() {
         {/* 컨텐츠 */}
         <div className="flex flex-col items-center px-6 pt-10 pb-[54px]">
           {/* 제목 */}
-          <ScrollReveal className="flex justify-center mb-10">
+          <ScrollReveal className="flex justify-center mb-5">
             <Image
               src="/location_title.svg"
               alt="오시는길"
@@ -87,7 +87,7 @@ export function Location() {
           {/* 장소명 및 주소 */}
           <ScrollReveal
             delay={200}
-            className="text-[18px] font-normal text-center mb-4 leading-[160%] text-[#111111] gap-2"
+            className="text-[18px] font-normal text-center mb-[30px] leading-[160%] text-[#111111] gap-2"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
             <p>{venue.name}</p>

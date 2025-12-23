@@ -10,6 +10,7 @@ export function SplashScreen() {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const searchParams = useSearchParams();
   const name = searchParams.get("name") || "";
+  const sub = searchParams.get("sub") || "";
 
   useEffect(() => {
     // 폰트 로드 대기
@@ -85,13 +86,13 @@ export function SplashScreen() {
           >
             {name ? (
               <>
-                <p className="text-[#111111]">{name}님,</p>
-                <p className="text-[#111111]">결혼식에 초대합니다</p>
+                <p className="text-[#111111]">{name}</p>
+                <p className="text-[#111111]">{sub ? sub : '결혼식에 초대합니다.'}</p>
               </>
             ) : (
               <>
-                <p className="text-[#111111]">역도요정 최홍비</p>
-                <p className="text-[#111111]">결혼식에 초대합니다</p>
+                <p className="text-[#111111]">두 사람의 약속을</p>
+                <p className="text-[#111111]">함께 지켜봐 주세요</p>
               </>
             )}
           </div>
@@ -101,7 +102,7 @@ export function SplashScreen() {
         <div className="absolute inset-0 pointer-events-none">
            <Image 
              src="/splash_bg.svg" 
-             alt="" 
+             alt="Splash Background" 
              fill 
              className="object-cover opacity-80"
              priority

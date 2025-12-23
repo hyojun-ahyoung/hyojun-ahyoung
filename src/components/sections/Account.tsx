@@ -293,7 +293,7 @@ export function Account() {
                 });
               }
             }}
-            className="relative flex-[3] flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
+            className="relative flex-3 flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -303,7 +303,7 @@ export function Account() {
                 filter: "url(#squiggly-account)",
               }}
             />
-            <img src="/kakao_icon.svg" alt="카카오톡" className="w-5 h-5" />
+            <img src="/kakao_icon.svg" alt="카카오톡" />
             <span
               className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
               style={{
