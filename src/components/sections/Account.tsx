@@ -131,14 +131,9 @@ export function Account() {
               {ACCOUNT_INFO.groom.map((account, index) => (
                 <div
                   key={index}
-                  className={`py-4 border-b border-[#3E8676] ${
-                    account.role === "어머니" ? "mb-[40px]" : ""
-                  }`}
-                  style={{
-                    borderImage: "linear-gradient(90deg, #3E8676, #3E8676) 1",
-                  }}
+                  className={`${account.role === "어머니" ? "mb-[40px]" : ""}`}
                 >
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between py-4">
                     <div className="flex gap-4">
                       <span
                         className="text-sm text-[#7D7D7D] w-14 px-2"
@@ -170,6 +165,7 @@ export function Account() {
                         : "복사"}
                     </button>
                   </div>
+                  <img src="/line_groom.svg" alt="line" className="w-full" />
                 </div>
               ))}
             </div>
@@ -206,14 +202,8 @@ export function Account() {
           >
             <div className="pt-3">
               {ACCOUNT_INFO.bride.map((account, index) => (
-                <div
-                  key={index}
-                  className="py-4 border-b border-[#E487A7]"
-                  style={{
-                    borderImage: "linear-gradient(90deg, #E487A7, #E487A7) 1",
-                  }}
-                >
-                  <div className="flex items-start justify-between">
+                <div key={index}>
+                  <div className="flex items-start justify-between py-4">
                     <div className="flex gap-4">
                       <span
                         className="text-sm text-[#7D7D7D] w-14 px-2"
@@ -245,6 +235,7 @@ export function Account() {
                         : "복사"}
                     </button>
                   </div>
+                  <img src="/line_bride.svg" alt="line" className="w-full" />
                 </div>
               ))}
             </div>
