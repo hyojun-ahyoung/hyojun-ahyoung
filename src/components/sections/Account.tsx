@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
-import { ACCOUNT_INFO } from "@/constants/wedding-info";
+import { ACCOUNT_INFO, WEDDING_INFO } from "@/constants/wedding-info";
 import { copyToClipboard } from "@/utils/text";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -24,6 +24,13 @@ declare global {
               webUrl: string;
             };
           };
+          buttons?: {
+            title: string;
+            link: {
+              mobileWebUrl: string;
+              webUrl: string;
+            };
+          }[];
         }) => void;
       };
     };
@@ -287,17 +294,37 @@ export function Account() {
             onClick={() => {
               // 카카오톡 공유 기능
               if (typeof window !== "undefined" && window.Kakao) {
+                const { groom, bride, date } = WEDDING_INFO;
+                
+                // 날짜 포맷팅
+                const days = ["일", "월", "화", "수", "목", "금", "토"];
+                const dayOfWeek = days[date.getDay()];
+                const hour = date.getHours();
+                const minute = date.getMinutes();
+                const ampm = hour >= 12 ? "오후" : "오전";
+                const displayHour = hour > 12 ? hour - 12 : hour;
+                const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${minute > 0 ? ` ${minute}분` : ""}`;
+
                 window.Kakao.Share.sendDefault({
                   objectType: "feed",
                   content: {
-                    title: "청첩장",
-                    description: "결혼식에 초대합니다",
-                    imageUrl: "",
+                    title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
+                    description: `예식일\n${dateStr}`,
+                    imageUrl: `${window.location.origin}/images/gallery/5.jpg`,
                     link: {
                       mobileWebUrl: window.location.href,
                       webUrl: window.location.href,
                     },
                   },
+                  buttons: [
+                    {
+                      title: "모바일 청첩장 보기",
+                      link: {
+                        mobileWebUrl: window.location.href,
+                        webUrl: window.location.href,
+                      },
+                    },
+                  ],
                 });
               }
             }}
