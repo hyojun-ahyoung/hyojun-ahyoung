@@ -80,6 +80,7 @@ function MainContent() {
         <DdayCounter />
         <Location />  
         <Account />
+        <div className="h-[150px]" />
       </div>
     </div>
   );

@@ -26,9 +26,9 @@ export function DdayCounter() {
   return (
     <section style={{ fontFamily: "var(--font-gamtan)" }}>
       {/* D-day 카운터 */}
-      <ScrollReveal className="w-full max-w-sm relative mx-auto mt-40 mb-20">
+      <ScrollReveal className="w-full max-w-sm relative mx-auto mt-40 mb-20 px-5">
         {/* Characters Area */}
-        <div className="absolute bottom-full left-0 w-full h-40 pointer-events-none">
+        <div className="absolute bottom-full inset-x-5 h-40 pointer-events-none">
           {/* Groom - Moves with progress */}
           <div
             className="absolute bottom-0 flex flex-col items-center"
@@ -87,7 +87,7 @@ export function DdayCounter() {
         </div>
 
         {/* Text Below Bar - Moves with progress */}
-        <div className="absolute top-full mt-4 left-0 w-full pointer-events-none">
+        <div className="absolute top-full mt-4 inset-x-5 pointer-events-none">
           <div
             className="absolute top-0 flex flex-col items-center"
             style={{

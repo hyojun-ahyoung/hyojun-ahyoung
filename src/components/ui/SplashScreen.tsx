@@ -104,14 +104,15 @@ export function SplashScreen() {
              src="/splash_bg.svg" 
              alt="Splash Background" 
              fill 
-             className="object-cover opacity-80"
+             className="object-cover"
              priority
            />
         </div>
 
 
         {/* 메인 이미지 (splash_main.png) - 하단 배치 */}
-        <div className="absolute bottom-[100px] w-[300px] h-[300px]">
+        {/* 메인 이미지 (splash_main.png) - 하단 배치 */}
+        <div className="relative w-[300px] h-[300px] mt-auto mb-[45px]">
            <Image 
              src="/images/splash_main.png" 
              alt="Main Illustration" 

@@ -95,7 +95,7 @@ export function Account() {
           {/* 신랑측 타이틀 */}
           <button
             onClick={() => setGroomOpen(!groomOpen)}
-            className="w-full relative flex items-center justify-center mb-4"
+            className="w-full relative flex items-center justify-center"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
             <img src="/account1.svg" alt="" className="w-full h-auto" />
@@ -118,28 +118,33 @@ export function Account() {
               opacity: groomOpen ? 1 : 0,
             }}
           >
-            <div className="space-y-0">
+            <div className="pt-3">
               {ACCOUNT_INFO.groom.map((account, index) => (
                 <div
                   key={index}
-                  className="py-4 border-b-2 border-[#628869]"
+                  className={`py-4 border-b border-[#3E8676] ${
+                    account.role === "어머니" ? "mb-[40px]" : ""
+                  }`}
                   style={{
-                    borderImage: "linear-gradient(90deg, #628869, #628869) 1",
+                    borderImage: "linear-gradient(90deg, #3E8676, #3E8676) 1",
                   }}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex gap-4">
                       <span
-                        className="text-sm text-[#628869] w-10"
+                        className="text-sm text-[#7D7D7D] w-14 px-2"
                         style={{ fontFamily: "var(--font-gamtan)" }}
                       >
                         {account.role}
                       </span>
-                      <div style={{ fontFamily: "var(--font-gamtan)" }}>
-                        <p className="text-base font-medium text-[#111111]">
+                      <div
+                        style={{ fontFamily: "var(--font-gamtan)" }}
+                        className="flex flex-col gap-[6px]"
+                      >
+                        <p className="text-base font-medium text-[#111111] leading-[150%]">
                           {account.name}
                         </p>
-                        <p className="text-sm text-[#111111]">
+                        <p className="text-sm text-[#111111] leading-[150%]">
                           {account.accountNumber} {account.bank}
                         </p>
                       </div>
@@ -148,7 +153,7 @@ export function Account() {
                       onClick={() =>
                         handleCopy(account.accountNumber, account.bank)
                       }
-                      className="px-4 py-1.5 bg-[#628869] text-white text-sm rounded-md"
+                      className="px-4 py-1.5 bg-[#3E8676] text-white text-sm rounded-md mr-2 font-semibold"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
                       {copiedAccount === account.accountNumber
@@ -167,7 +172,7 @@ export function Account() {
           {/* 신부측 타이틀 */}
           <button
             onClick={() => setBrideOpen(!brideOpen)}
-            className="w-full relative flex items-center justify-center mb-4"
+            className="w-full relative flex items-center justify-center"
             style={{ fontFamily: "var(--font-gamtan)" }}
           >
             <img src="/account2.svg" alt="" className="w-full h-auto" />
@@ -190,28 +195,31 @@ export function Account() {
               opacity: brideOpen ? 1 : 0,
             }}
           >
-            <div className="space-y-0">
+            <div className="pt-3">
               {ACCOUNT_INFO.bride.map((account, index) => (
                 <div
                   key={index}
-                  className="py-4 border-b-2 border-[#E8A4B8]"
+                  className="py-4 border-b border-[#E487A7]"
                   style={{
-                    borderImage: "linear-gradient(90deg, #E8A4B8, #E8A4B8) 1",
+                    borderImage: "linear-gradient(90deg, #E487A7, #E487A7) 1",
                   }}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex gap-4">
                       <span
-                        className="text-sm text-[#E8A4B8] w-10"
+                        className="text-sm text-[#7D7D7D] w-14 px-2"
                         style={{ fontFamily: "var(--font-gamtan)" }}
                       >
                         {account.role}
                       </span>
-                      <div style={{ fontFamily: "var(--font-gamtan)" }}>
-                        <p className="text-base font-medium text-[#111111]">
+                      <div
+                        style={{ fontFamily: "var(--font-gamtan)" }}
+                        className="flex flex-col gap-[6px]"
+                      >
+                        <p className="text-base font-medium text-[#111111] leading-[150%]">
                           {account.name}
                         </p>
-                        <p className="text-sm text-[#111111]">
+                        <p className="text-sm text-[#111111] leading-[150%]">
                           {account.accountNumber} {account.bank}
                         </p>
                       </div>
@@ -220,7 +228,7 @@ export function Account() {
                       onClick={() =>
                         handleCopy(account.accountNumber, account.bank)
                       }
-                      className="px-4 py-1.5 bg-[#E8A4B8] text-white text-sm rounded-md"
+                      className="px-4 py-1.5 bg-[#E487A7] text-white text-sm rounded-md mr-2 font-semibold"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
                       {copiedAccount === account.accountNumber
@@ -253,7 +261,7 @@ export function Account() {
               await navigator.clipboard.writeText(window.location.href);
               alert("링크가 복사되었습니다!");
             }}
-            className="relative flex-[2] flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
+            className="relative flex-2 flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -303,7 +311,13 @@ export function Account() {
                 filter: "url(#squiggly-account)",
               }}
             />
-            <img src="/kakao_icon.svg" alt="카카오톡" />
+            <Image
+              src="/kakao_icon.svg"
+              alt="카카오톡"
+              width={20}
+              height={20}
+              className="w-5 h-5"
+            />
             <span
               className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
               style={{

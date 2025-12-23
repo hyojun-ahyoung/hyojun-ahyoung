@@ -105,7 +105,7 @@ export function Location() {
             />
             <div
               ref={mapRef}
-              className="w-full min-h-[280px] rounded-lg overflow-hidden bg-gray-100"
+              className="w-full min-h-[220px] rounded-lg overflow-hidden bg-gray-100"
             />
             <svg width="0" height="0" className="absolute">
               <defs>
