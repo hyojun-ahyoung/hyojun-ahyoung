@@ -19,6 +19,8 @@ declare global {
             title: string;
             description: string;
             imageUrl: string;
+            imageWidth?: number;
+            imageHeight?: number;
             link: {
               mobileWebUrl: string;
               webUrl: string;
@@ -311,6 +313,8 @@ export function Account() {
                     title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
                     description: `예식일\n${dateStr}`,
                     imageUrl: `${window.location.origin}/images/gallery/5.jpg`,
+                    imageWidth: 900,
+                    imageHeight: 1332,
                     link: {
                       mobileWebUrl: window.location.href,
                       webUrl: window.location.href,
