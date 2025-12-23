@@ -68,7 +68,7 @@ export function BackgroundMusic() {
       {/* 재생/일시정지 버튼 */}
       <button
         onClick={togglePlay}
-        className="fixed top-6 right-6 z-40 w-[30px] h-[30px] rounded-full bg-white shadow-lg border border-[#3E8676] flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        className="fixed bottom-6 right-6 z-40 w-[30px] h-[30px] rounded-full bg-white shadow-lg border border-[#3E8676] flex items-center justify-center transition-all hover:scale-110 active:scale-95"
         aria-label={isPlaying ? "음악 일시정지" : "음악 재생"}
       >
         {isPlaying ? (

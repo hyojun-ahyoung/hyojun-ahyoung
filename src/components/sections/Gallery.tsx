@@ -78,16 +78,16 @@ export function Gallery() {
       {/* Lightbox Modal - Portal 사용 */}
       {isOpen &&
         createPortal(
-          <div className="fixed inset-0 z-[9999] bg-black/95 flex flex-col items-center justify-center h-[100svh]">
+          <div className="fixed inset-0 z-9999 bg-black/95 flex flex-col items-center justify-center h-svh">
             <button
               onClick={closeLightbox}
-              className="absolute top-4 right-4 z-[10000]"
+              className="absolute top-6 right-6 z-10000"
             >
               <Image
                 src="/gallery_close.svg"
                 alt="닫기"
-                width={30}
-                height={30}
+                width={40}
+                height={40}
               />
             </button>
 
@@ -97,17 +97,18 @@ export function Gallery() {
               spaceBetween={20}
               slidesPerView={1}
               pagination={{ clickable: true }}
-              className="w-full h-full max-w-4xl"
+              autoHeight={true}
+              className="w-full max-w-4xl pb-14"
             >
               {GALLERY_IMAGES.map((image, index) => (
                 <SwiperSlide key={index} className="flex items-center justify-center">
-                  <div className="relative w-full h-full flex items-center justify-center p-4">
+                  <div className="relative w-full flex items-center justify-center px-4">
                     <Image
                       src={image.src}
                       alt={image.alt}
                       width={800}
                       height={1200}
-                      className="max-w-full max-h-[90svh] object-contain"
+                      className="max-w-full max-h-[75svh] object-contain"
                       priority={index === currentIndex}
                     />
                   </div>
@@ -125,7 +126,7 @@ export function Gallery() {
                 opacity: 1;
               }
               .swiper-pagination {
-                bottom: 24px !important;
+                bottom: 0px !important;
               }
             `}</style>
           </div>,
