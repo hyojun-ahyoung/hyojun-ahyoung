@@ -17,7 +17,7 @@ export function TextReveal({ text, delay = 0, className = "", start = true }: Te
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: delay * i },
+      transition: { staggerChildren: 0.12, delayChildren: delay * i },
     }),
   };
 
@@ -28,7 +28,7 @@ export function TextReveal({ text, delay = 0, className = "", start = true }: Te
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100,
+        stiffness: 50,
       },
     },
     hidden: {
@@ -37,7 +37,7 @@ export function TextReveal({ text, delay = 0, className = "", start = true }: Te
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100,
+        stiffness: 50,
       },
     },
   };
