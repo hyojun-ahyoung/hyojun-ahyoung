@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { TextReveal } from "./TextReveal";
 
 export function SplashScreen() {
   const [isFontsReady, setIsFontsReady] = useState(false);
@@ -51,28 +52,34 @@ export function SplashScreen() {
         
         {/* 텍스트 영역 */}
         <div
-          className={`flex flex-col items-center mt-[120px] transform transition-all duration-1500 ease-out z-10 ${
-            isFontsReady
-              ? "opacity-100 scale-100 translate-y-0"
-              : "opacity-0 scale-95 translate-y-4"
-          } ${isFadingOut ? "scale-95 opacity-0" : ""}`}
+          className={`flex flex-col items-center mt-[120px] transition-all duration-500 z-10 ${
+             isFadingOut ? "scale-95 opacity-0" : ""
+          }`}
         >
-          {/* Wedding Invitation 영문 텍스트 */}
-          <p
-            style={{
-              fontFamily: "var(--font-vesper-libre)",
-              fontWeight: 400,
-              fontSize: "18px",
-              lineHeight: "100%",
-              letterSpacing: "-0.01em",
-              textTransform: "capitalize",
-            }}
-            className="text-[#EFAEC4] mb-[60px]"
+          {/* Wedding Invitation 영문 텍스트 - 기존 페이드 효과 유지 */}
+          <div
+            className={`transform transition-all duration-1500 ease-out ${
+              isFontsReady
+                ? "opacity-100 scale-100 translate-y-0"
+                : "opacity-0 scale-95 translate-y-4"
+            }`}
           >
-            Wedding Invitation
-          </p>
+            <p
+              style={{
+                fontFamily: "var(--font-vesper-libre)",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: "100%",
+                letterSpacing: "-0.01em",
+                textTransform: "capitalize",
+              }}
+              className="text-[#EFAEC4] mb-[60px]"
+            >
+              Wedding Invitation
+            </p>
+          </div>
 
-          {/* 한글 텍스트 */}
+          {/* 한글 텍스트 - 타이핑 효과 (TextReveal) */}
           <div
             className="flex flex-col items-center gap-2"
             style={{
@@ -86,13 +93,31 @@ export function SplashScreen() {
           >
             {name ? (
               <>
-                <p className="text-[#111111]">{name}</p>
-                <p className="text-[#111111]">{sub ? sub : '결혼식에 초대합니다.'}</p>
+                <TextReveal 
+                  text={name} 
+                  className="text-[#111111]" 
+                  start={isFontsReady} 
+                />
+                <TextReveal 
+                  text={sub ? sub : '결혼식에 초대합니다.'} 
+                  className="text-[#111111]" 
+                  start={isFontsReady} 
+                  delay={0.5} 
+                />
               </>
             ) : (
               <>
-                <p className="text-[#111111]">두 사람의 약속을</p>
-                <p className="text-[#111111]">함께 지켜봐 주세요</p>
+                <TextReveal 
+                  text="두 사람의 약속을" 
+                  className="text-[#111111]" 
+                  start={isFontsReady} 
+                />
+                <TextReveal 
+                  text="함께 지켜봐 주세요" 
+                  className="text-[#111111]" 
+                  start={isFontsReady} 
+                  delay={0.5} 
+                />
               </>
             )}
           </div>
@@ -110,7 +135,6 @@ export function SplashScreen() {
         </div>
 
 
-        {/* 메인 이미지 (splash_main.png) - 하단 배치 */}
         {/* 메인 이미지 (splash_main.png) - 하단 배치 */}
         <div className="relative w-[300px] h-[300px] mt-auto mb-[45px]">
            <Image 
