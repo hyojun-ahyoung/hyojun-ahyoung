@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { createPortal } from "react-dom";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -34,7 +35,7 @@ export function Gallery() {
 
       <div className="w-full flex flex-col gap-0 px-0">
         {/* 메인 이미지 (1번 - 인덱스 0) */}
-        <div 
+        <ScrollReveal
           className="w-full relative cursor-pointer" 
           onClick={() => openLightbox(0)}
         >
@@ -46,7 +47,7 @@ export function Gallery() {
             className="w-full h-auto object-cover"
             priority
           />
-        </div>
+        </ScrollReveal>
 
         {/* 그리드 (2번 ~ 12번) - 3열 */}
         <div className="w-full grid grid-cols-3 gap-0">

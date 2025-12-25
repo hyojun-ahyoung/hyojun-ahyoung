@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 
-interface ScrollRevealProps {
+interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   animation?: "fade-up" | "fade-in" | "zoom-in" | "slide-left" | "slide-right";
   delay?: number;
   duration?: number;
   threshold?: number;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
 export function ScrollReveal({
@@ -20,6 +18,7 @@ export function ScrollReveal({
   threshold = 0.15,
   className = "",
   style,
+  ...props
 }: ScrollRevealProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -76,6 +75,7 @@ export function ScrollReveal({
         transitionDelay: `${delay}ms`,
         ...style,
       }}
+      {...props}
     >
       {children}
     </div>
