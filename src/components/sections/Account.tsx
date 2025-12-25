@@ -267,7 +267,7 @@ export function Account() {
             <div
               className="absolute inset-0 rounded-[6px] pointer-events-none"
               style={{
-                border: "1px solid #d1d5db",
+                border: "2px solid #d1d5db",
                 filter: "url(#squiggly-account)",
               }}
             />
@@ -329,7 +329,7 @@ export function Account() {
             <div
               className="absolute inset-0 rounded-[6px] pointer-events-none"
               style={{
-                border: "1px solid #d1d5db",
+                border: "2px solid #d1d5db",
                 filter: "url(#squiggly-account)",
               }}
             />
@@ -366,7 +366,7 @@ export function Account() {
               <feDisplacementMap
                 in="SourceGraphic"
                 in2="noise"
-                scale="2"
+                scale="4"
                 xChannelSelector="R"
                 yChannelSelector="G"
               />
