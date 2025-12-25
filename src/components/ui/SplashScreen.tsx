@@ -127,12 +127,12 @@ export function SplashScreen() {
         </div>
 
         {/* 배경 별 장식 (splash_bg.svg) */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
            <Image 
              src="/splash_bg.svg" 
              alt="Splash Background" 
-             fill 
-             className="object-cover"
+             width={356}
+             height={565}
              priority
            />
         </div>
