@@ -8,6 +8,7 @@ interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number;
   duration?: number;
   threshold?: number;
+  triggerOnce?: boolean;
 }
 
 export function ScrollReveal({
@@ -16,6 +17,7 @@ export function ScrollReveal({
   delay = 0,
   duration = 1000,
   threshold = 0.15,
+  triggerOnce = true,
   className = "",
   style,
   ...props
@@ -26,7 +28,14 @@ export function ScrollReveal({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          if (triggerOnce && ref.current) {
+            observer.unobserve(ref.current);
+          }
+        } else if (!triggerOnce) {
+          setIsVisible(false);
+        }
       },
       {
         threshold: threshold,

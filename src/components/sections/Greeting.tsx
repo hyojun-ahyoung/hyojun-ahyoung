@@ -60,7 +60,7 @@ export function Greeting() {
       </div>
 
       {/* 5. Third Image */}
-      <div className="w-full px-[68px] flex justify-center">
+      <div className="w-full px-[30px] md:px-[68px] flex justify-center">
         <ScrollReveal animation="fade-up" duration={1200}>
           <Image
             src="/images/third_image.png"
