@@ -256,100 +256,88 @@ export function Account() {
         {/* 공유 버튼 영역 */}
         <ScrollReveal delay={500} className="flex justify-center gap-[10px] mt-8 mb-[100px]">
           {/* 링크 복사하기 */}
-          <button
-            onClick={async () => {
-              await navigator.clipboard.writeText(window.location.href);
-              alert("링크가 복사되었습니다!");
-            }}
-            className="relative flex-2 flex items-center justify-center gap-[4px] bg-white py-4 rounded-md"
-          >
-            {/* 지글지글 테두리 */}
+          <div className="flex-2 relative">
             <div
-              className="absolute inset-0 rounded-[6px] pointer-events-none"
-              style={{
-                border: "2px solid #d1d5db",
-                filter: "url(#squiggly-account)",
-              }}
+              className="absolute inset-0 rounded-xl pointer-events-none border-2 border-neutral-300 z-10"
+              style={{ filter: "url(#squiggly-account)" }}
             />
-            <span
-              className="text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
+            <button
+              onClick={async () => {
+                await navigator.clipboard.writeText(window.location.href);
+                alert("링크가 복사되었습니다!");
+              }}
+              className="w-full flex items-center justify-center gap-[4px] bg-white py-4 rounded-xl text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
               }}
             >
               링크 복사하기
-            </span>
-          </button>
+            </button>
+          </div>
 
           {/* 카카오톡으로 공유하기 */}
-          <button
-            onClick={() => {
-              // 카카오톡 공유 기능
-              if (typeof window !== "undefined" && window.Kakao) {
-                const { groom, bride, date } = WEDDING_INFO;
-                
-                // 날짜 포맷팅
-                const days = ["일", "월", "화", "수", "목", "금", "토"];
-                const dayOfWeek = days[date.getDay()];
-                const hour = date.getHours();
-                const minute = date.getMinutes();
-                const ampm = hour >= 12 ? "오후" : "오전";
-                const displayHour = hour > 12 ? hour - 12 : hour;
-                const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${minute > 0 ? ` ${minute}분` : ""}`;
+          <div className="flex-3 relative">
+            <div
+              className="absolute inset-0 rounded-xl pointer-events-none border-2 border-neutral-300 z-10"
+              style={{ filter: "url(#squiggly-account)" }}
+            />
+            <button
+              onClick={() => {
+                // 카카오톡 공유 기능
+                if (typeof window !== "undefined" && window.Kakao) {
+                  const { groom, bride, date } = WEDDING_INFO;
+                  
+                  // 날짜 포맷팅
+                  const days = ["일", "월", "화", "수", "목", "금", "토"];
+                  const dayOfWeek = days[date.getDay()];
+                  const hour = date.getHours();
+                  const minute = date.getMinutes();
+                  const ampm = hour >= 12 ? "오후" : "오전";
+                  const displayHour = hour > 12 ? hour - 12 : hour;
+                  const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${minute > 0 ? ` ${minute}분` : ""}`;
 
-                window.Kakao.Share.sendDefault({
-                  objectType: "feed",
-                  content: {
-                    title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
-                    description: `예식일\n${dateStr}`,
-                    imageUrl: `${window.location.origin}/images/gallery/3.jpg`,
-                    imageWidth: 900,
-                    imageHeight: 1332,
-                    link: {
-                      mobileWebUrl: window.location.href,
-                      webUrl: window.location.href,
-                    },
-                  },
-                  buttons: [
-                    {
-                      title: "모바일 청첩장 보기",
+                  window.Kakao.Share.sendDefault({
+                    objectType: "feed",
+                    content: {
+                      title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
+                      description: `예식일\n${dateStr}`,
+                      imageUrl: `${window.location.origin}/images/gallery/3.jpg`,
+                      imageWidth: 900,
+                      imageHeight: 1332,
                       link: {
                         mobileWebUrl: window.location.href,
                         webUrl: window.location.href,
                       },
                     },
-                  ],
-                });
-              }
-            }}
-            className="relative flex-3 flex items-center justify-center gap-[4px] bg-white py-4 rounded-md"
-          >
-            {/* 지글지글 테두리 */}
-            <div
-              className="absolute inset-0 rounded-[6px] pointer-events-none"
-              style={{
-                border: "2px solid #d1d5db",
-                filter: "url(#squiggly-account)",
+                    buttons: [
+                      {
+                        title: "모바일 청첩장 보기",
+                        link: {
+                          mobileWebUrl: window.location.href,
+                          webUrl: window.location.href,
+                        },
+                      },
+                    ],
+                  });
+                }
               }}
-            />
-            <Image
-              src="/images/kakao.png"
-              alt="카카오톡"
-              width={20}
-              height={20}
-              className="w-5 h-5"
-            />
-            <span
-              className="text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
+              className="w-full flex items-center justify-center gap-[4px] bg-white py-4 rounded-xl text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
               }}
             >
+              <Image
+                src="/images/kakao.png"
+                alt="카카오톡"
+                width={20}
+                height={20}
+                className="w-5 h-5"
+              />
               카카오톡으로 공유하기
-            </span>
-          </button>
+            </button>
+          </div>
         </ScrollReveal>
 
         {/* 지글지글 필터 */}
@@ -366,7 +354,7 @@ export function Account() {
               <feDisplacementMap
                 in="SourceGraphic"
                 in2="noise"
-                scale="4"
+                scale="2"
                 xChannelSelector="R"
                 yChannelSelector="G"
               />
