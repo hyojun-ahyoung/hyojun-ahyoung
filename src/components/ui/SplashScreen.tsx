@@ -42,6 +42,19 @@ export function SplashScreen() {
     };
   }, [isFontsReady, setIsSplashComplete]);
 
+  // 스플래시 화면이 떠있을 때 스크롤 막기
+  useEffect(() => {
+    if (isVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isVisible]);
+
   if (!isVisible) return null;
 
   return (

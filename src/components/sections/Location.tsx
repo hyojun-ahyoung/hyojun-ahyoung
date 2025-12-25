@@ -133,7 +133,7 @@ export function Location() {
           <ScrollReveal delay={400} className="flex gap-2 mb-8 w-full max-w-sm">
             <div className="flex-1 relative">
               <div
-                className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+                className="absolute inset-0 rounded-xl pointer-events-none border-2 border-neutral-300 z-10"
                 style={{ filter: "url(#squiggly-border)" }}
               />
               <button
@@ -147,7 +147,7 @@ export function Location() {
             </div>
             <div className="flex-1 relative">
               <div
-                className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+                className="absolute inset-0 rounded-xl pointer-events-none border-2 border-neutral-300 z-10"
                 style={{ filter: "url(#squiggly-border)" }}
               />
               <button
@@ -161,7 +161,7 @@ export function Location() {
             </div>
             <div className="flex-1 relative">
               <div
-                className="absolute inset-0 rounded-xl pointer-events-none border border-neutral-300 z-10"
+                className="absolute inset-0 rounded-xl pointer-events-none border-2 border-neutral-300 z-10"
                 style={{ filter: "url(#squiggly-border)" }}
               />
               <button

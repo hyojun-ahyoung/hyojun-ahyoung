@@ -272,7 +272,7 @@ export function Account() {
               }}
             />
             <span
-              className="text-[15px] font-semibold text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
@@ -334,14 +334,14 @@ export function Account() {
               }}
             />
             <Image
-              src="/kakao_icon.svg"
+              src="/images/kakao.png"
               alt="카카오톡"
               width={20}
               height={20}
               className="w-5 h-5"
             />
             <span
-              className="text-[15px] font-semibold text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-semibold text-[#282828] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
