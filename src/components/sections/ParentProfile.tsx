@@ -34,6 +34,16 @@ export function ParentProfile() {
           </ScrollReveal>
         </div>
       </div>
+        {/* Best Text Image */}
+        <div className="w-full flex justify-center px-[70px] pb-10 pt-8">
+          <Image
+            src="/best_text.svg"
+            alt="Best Text"
+            width={300}
+            height={100}
+            className="w-full h-auto"
+          />
+        </div>
     </section>
   );
 }
