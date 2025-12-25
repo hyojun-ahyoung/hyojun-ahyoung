@@ -303,7 +303,7 @@ export function Account() {
                   content: {
                     title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
                     description: `예식일\n${dateStr}`,
-                    imageUrl: `${window.location.origin}/images/gallery/5.jpg`,
+                    imageUrl: `${window.location.origin}/images/gallery/3.jpg`,
                     imageWidth: 900,
                     imageHeight: 1332,
                     link: {
