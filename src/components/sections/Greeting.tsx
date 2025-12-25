@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function Greeting() {
   return (
-    <section className="flex flex-col items-center w-full mt-[100px] gap-[40px] overflow-hidden">
+    <section className="flex flex-col items-center w-full mt-[100px] gap-[40px]">
       {/* 1. First Image */}
       <div className="w-full px-[30px] flex justify-center">
         <ScrollReveal animation="fade-up" duration={1200}>
@@ -60,7 +60,7 @@ export function Greeting() {
       </div>
 
       {/* 5. Third Image */}
-      <div className="w-full px-[30px] md:px-[68px] flex justify-center">
+      <div className="w-full px-[68px] flex justify-center">
         <ScrollReveal animation="fade-up" duration={1200}>
           <Image
             src="/images/third_image.png"

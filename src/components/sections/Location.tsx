@@ -141,7 +141,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-xl bg-white text-[13px] max-[380px]:text-[11px] font-bold leading-normal tracking-[-0.03em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/naver.svg" alt="네이버" width={24} height={24} className="shrink-0" />
+                <Image src="/naver.svg" alt="네이버" width={24} height={24} />
                 네이버지도
               </button>
             </div>
@@ -155,7 +155,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-xl bg-white text-[13px] max-[380px]:text-[11px] font-bold leading-normal tracking-[-0.03em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/kakao.svg" alt="카카오" width={24} height={24} className="shrink-0" />
+                <Image src="/kakao.svg" alt="카카오" width={24} height={24} />
                 카카오내비
               </button>
             </div>
@@ -169,7 +169,7 @@ export function Location() {
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-2 rounded-xl bg-white text-[13px] max-[380px]:text-[11px] font-bold leading-normal tracking-[-0.03em] text-center text-[#444444]"
                 style={{ fontFamily: "var(--font-gamtan)" }}
               >
-                <Image src="/tmap.svg" alt="티맵" width={24} height={24} className="shrink-0" />
+                <Image src="/tmap.svg" alt="티맵" width={24} height={24} />
                 티맵
               </button>
             </div>
