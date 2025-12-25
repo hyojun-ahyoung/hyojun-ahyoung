@@ -71,8 +71,8 @@ export function BackgroundMusic() {
         <Image
           src="/pause.svg"
           alt="Pause"
-          width={32}
-          height={32}
+          width={48}
+          height={48}
           onClick={togglePlay}
           className="fixed bottom-6 right-6 z-40 cursor-pointer transition-all hover:scale-110 active:scale-95"
         />
@@ -80,8 +80,8 @@ export function BackgroundMusic() {
         <Image
           src="/play.svg"
           alt="Play"
-          width={32}
-          height={32}
+          width={48}
+          height={48}
           onClick={togglePlay}
           className="fixed bottom-6 right-6 z-40 cursor-pointer transition-all hover:scale-110 active:scale-95"
         />
