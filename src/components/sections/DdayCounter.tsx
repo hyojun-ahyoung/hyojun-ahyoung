@@ -29,39 +29,57 @@ export function DdayCounter() {
       <ScrollReveal className="w-full max-w-sm relative mx-auto mt-40 mb-20 px-5">
         {/* Characters Area */}
         <div className="absolute bottom-full inset-x-5 h-40 pointer-events-none">
-          {/* Groom - Moves with progress */}
-          <div
-            className="absolute bottom-0 flex flex-col items-center"
-            style={{
-              left: `${progress}%`,
-              transform: "translateX(calc(-50% - 20px))",
-            }}
-          >
-            <div className="relative w-28 h-28">
-              <Image
-                src="/images/jun.png"
-                alt="Groom"
-                fill
-                className="object-contain"
-                sizes="128px"
-                priority
-              />
+          {dday === 0 ? (
+            /* D-Day: Single Centered Image */
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+              <div className="relative w-36 h-36">
+                <Image
+                  src="/images/goal.png"
+                  alt="Wedding Day"
+                  fill
+                  className="object-contain"
+                  sizes="160px"
+                  priority
+                />
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              {/* Groom - Moves with progress */}
+              <div
+                className="absolute bottom-0 flex flex-col items-center"
+                style={{
+                  left: `${progress}%`,
+                  transform: "translateX(calc(-50% - 20px))",
+                }}
+              >
+                <div className="relative w-28 h-28">
+                  <Image
+                    src="/images/jun.png"
+                    alt="Groom"
+                    fill
+                    className="object-contain"
+                    sizes="128px"
+                    priority
+                  />
+                </div>
+              </div>
 
-          {/* Bride - Static at end */}
-          <div className="absolute -bottom-2 right-0 transform translate-x-[20%]">
-            <div className="relative w-32 h-32">
-              <Image
-                src="/images/amy.png"
-                alt="Bride"
-                fill
-                className="object-contain"
-                sizes="128px"
-                priority
-              />
-            </div>
-          </div>
+              {/* Bride - Static at end */}
+              <div className="absolute -bottom-2 right-0 transform translate-x-[20%]">
+                <div className="relative w-32 h-32">
+                  <Image
+                    src="/images/amy.png"
+                    alt="Bride"
+                    fill
+                    className="object-contain"
+                    sizes="128px"
+                    priority
+                  />
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Bar Container */}
@@ -91,7 +109,7 @@ export function DdayCounter() {
           <div
             className="absolute top-0 flex flex-col items-center"
             style={{
-              left: `${progress}%`,
+              left: dday === 0 ? "50%" : `${progress}%`,
               transform: "translateX(-50%)",
             }}
           >
@@ -100,7 +118,7 @@ export function DdayCounter() {
               style={{ fontFamily: "var(--font-hanason)" }}
             >
               <span className="text-2xl text-gray-800">{getDdayText()}</span>
-              <span className="text-xl">💦</span>
+              {dday !== 0 && <span className="text-xl">💦</span>}
             </div>
           </div>
         </div>

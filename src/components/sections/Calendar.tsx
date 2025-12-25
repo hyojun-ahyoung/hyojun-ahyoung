@@ -13,7 +13,7 @@ export function Calendar() {
     >
       {/* 년월 텍스트 */}
       <div 
-        className="text-[#5A5A5A] mb-6"
+        className="text-[##404040] mb-6"
         style={{
           fontSize: "16px",
           fontWeight: 600,
