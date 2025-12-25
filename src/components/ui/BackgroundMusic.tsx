@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -66,42 +67,25 @@ export function BackgroundMusic() {
       <audio ref={audioRef} src="/music/Polly.mp3" loop preload="auto" />
       
       {/* 재생/일시정지 버튼 */}
-      <button
-        onClick={togglePlay}
-        className="fixed bottom-6 right-6 z-40 w-[30px] h-[30px] rounded-full bg-white shadow-lg border border-[#3E8676] flex items-center justify-center transition-all hover:scale-110 active:scale-95"
-        aria-label={isPlaying ? "음악 일시정지" : "음악 재생"}
-      >
-        {isPlaying ? (
-          // 일시정지 아이콘
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#3E8676"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <rect x="7" y="4" width="2" height="16" fill="#3E8676" />
-            <rect x="15" y="4" width="2" height="16" fill="#3E8676" />
-          </svg>
-        ) : (
-          // 재생 아이콘
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="#3E8676"
-            stroke="#3E8676"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="9 6 18 12 9 18" />
-          </svg>
-        )}
-      </button>
+      {isPlaying ? (
+        <Image
+          src="/pause.svg"
+          alt="Pause"
+          width={32}
+          height={32}
+          onClick={togglePlay}
+          className="fixed bottom-6 right-6 z-40 cursor-pointer transition-all hover:scale-110 active:scale-95"
+        />
+      ) : (
+        <Image
+          src="/play.svg"
+          alt="Play"
+          width={32}
+          height={32}
+          onClick={togglePlay}
+          className="fixed bottom-6 right-6 z-40 cursor-pointer transition-all hover:scale-110 active:scale-95"
+        />
+      )}
     </>
   );
 }

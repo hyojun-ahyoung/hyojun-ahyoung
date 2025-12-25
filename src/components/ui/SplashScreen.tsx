@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { TextReveal } from "./TextReveal";
+import { useSplash } from "@/context/SplashContext";
 
 export function SplashScreen() {
+  const { setIsSplashComplete } = useSplash();
   const [isFontsReady, setIsFontsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -31,13 +33,14 @@ export function SplashScreen() {
     // 3.5초 후 완전히 제거
     const hideTimer = setTimeout(() => {
       setIsVisible(false);
+      setIsSplashComplete(true);
     }, 3500);
 
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
     };
-  }, [isFontsReady]);
+  }, [isFontsReady, setIsSplashComplete]);
 
   if (!isVisible) return null;
 

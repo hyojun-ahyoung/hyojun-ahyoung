@@ -52,7 +52,7 @@ export function Gallery() {
         <div className="w-full grid grid-cols-3 gap-0">
           {GALLERY_IMAGES.slice(1).map((image, i) => {
             const imageIndex = i + 1;
-            const isTopAligned = [1, 2, 5, 6, 7, 10].includes(imageIndex);
+            const isTopAligned = [1, 2, 3, 6, 7, 10].includes(imageIndex);
             
             return (
               <div

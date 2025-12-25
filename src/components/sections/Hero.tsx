@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 
+import { motion } from "framer-motion";
+import { useSplash } from "@/context/SplashContext";
+
 export function Hero() {
+  const { isSplashComplete } = useSplash();
   return (
     <section className="relative w-full flex flex-col items-center">
       {/* 타이틀 이미지 */}
@@ -18,7 +22,12 @@ export function Hero() {
       </div>
 
       {/* 메인 이미지 */}
-      <div className="relative mt-36 mx-3 w-[calc(100%-24px)]">
+      <motion.div 
+        className="relative mt-36 mx-3 w-[calc(100%-24px)]"
+        initial={{ opacity: 0 }}
+        animate={isSplashComplete ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      >
         <Image
           src="/images/main.png"
           alt="Wedding Main"
@@ -27,7 +36,7 @@ export function Hero() {
           className="w-full h-auto"
           priority
         />
-      </div>
-    </section>
+      </motion.div>
+      </section>
   );
 }

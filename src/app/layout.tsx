@@ -5,6 +5,7 @@ import "./globals.css";
 import { SplashScreen } from "@/components/ui/SplashScreen";
 import { ViewportHeight } from "@/components/ui/ViewportHeight";
 import { BackgroundMusic } from "@/components/ui/BackgroundMusic";
+import { SplashProvider } from "@/context/SplashContext";
 import { WEDDING_INFO } from "@/constants/wedding-info";
 
 const notoSansKr = Noto_Sans_KR({
@@ -87,16 +88,18 @@ export default function RootLayout({
       <body
         className={`${notoSansKr.variable} ${notoSerifKr.variable} ${vesperLibre.variable} font-sans antialiased`}
       >
-        <ViewportHeight />
-        <BackgroundMusic />
-        <Suspense fallback={null}>
-          <SplashScreen />
-        </Suspense>
-        <div className="min-h-screen w-full flex justify-center bg-gray-50">
-          <div className="w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
-            {children}
+        <SplashProvider>
+          <ViewportHeight />
+          <BackgroundMusic />
+          <Suspense fallback={null}>
+            <SplashScreen />
+          </Suspense>
+          <div className="min-h-screen w-full flex justify-center bg-gray-50">
+            <div className="w-full min-w-[360px] max-w-[440px] bg-white shadow-xl overflow-hidden">
+              {children}
+            </div>
           </div>
-        </div>
+        </SplashProvider>
 
         {/* 전역 SVG 필터 - 서버에서 미리 렌더링 */}
         <svg width="0" height="0" className="absolute">
