@@ -97,12 +97,11 @@ export function Gallery() {
               spaceBetween={20}
               slidesPerView={1}
               pagination={{ clickable: true }}
-              autoHeight={true}
-              className="w-full max-w-4xl pb-14"
+              className="w-full max-w-4xl h-full"
             >
               {GALLERY_IMAGES.map((image, index) => (
-                <SwiperSlide key={index} className="flex items-center justify-center">
-                  <div className="relative w-full flex items-center justify-center px-4">
+                <SwiperSlide key={index} className="h-full flex items-center justify-center">
+                  <div className="relative w-full h-full flex items-center justify-center px-4">
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -126,7 +125,7 @@ export function Gallery() {
                 opacity: 1;
               }
               .swiper-pagination {
-                bottom: 0px !important;
+                bottom: 50px !important;
               }
             `}</style>
           </div>,
