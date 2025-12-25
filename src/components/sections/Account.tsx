@@ -261,7 +261,7 @@ export function Account() {
               await navigator.clipboard.writeText(window.location.href);
               alert("링크가 복사되었습니다!");
             }}
-            className="relative flex-2 flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
+            className="relative flex-2 flex items-center justify-center gap-[4px] bg-white py-4 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -272,7 +272,7 @@ export function Account() {
               }}
             />
             <span
-              className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-semibold text-[#111111] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
@@ -323,7 +323,7 @@ export function Account() {
                 });
               }
             }}
-            className="relative flex-3 flex items-center justify-center gap-[4px] bg-white py-3 rounded-md"
+            className="relative flex-3 flex items-center justify-center gap-[4px] bg-white py-4 rounded-md"
           >
             {/* 지글지글 테두리 */}
             <div
@@ -341,7 +341,7 @@ export function Account() {
               className="w-5 h-5"
             />
             <span
-              className="text-[15px] font-normal text-[#111111] text-center leading-[150%]"
+              className="text-[15px] font-semibold text-[#111111] text-center leading-[150%]"
               style={{
                 fontFamily: "var(--font-gamtan)",
                 letterSpacing: "-0.05em",
