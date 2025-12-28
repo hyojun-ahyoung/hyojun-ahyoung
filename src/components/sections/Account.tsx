@@ -148,7 +148,7 @@ export function Account() {
                         <p className="text-base font-medium text-[#111111] leading-[150%]">
                           {account.name}
                         </p>
-                        <p className="text-sm text-[#111111] leading-[150%]">
+                        <p className="text-sm text-[#111111] leading-[150%] max-[380px]:text-xs">
                           {account.accountNumber} {account.bank}
                         </p>
                       </div>
@@ -157,7 +157,7 @@ export function Account() {
                       onClick={() =>
                         handleCopy(account.accountNumber, account.bank)
                       }
-                      className="px-4 py-1.5 bg-[#3E8676] text-white text-sm rounded-md mr-2 font-semibold"
+                      className="px-4 py-1.5 bg-[#3E8676] text-white text-sm rounded-md mr-2 font-semibold max-[380px]:text-xs max-[380px]:px-3"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
                       {copiedAccount === account.accountNumber
@@ -218,7 +218,7 @@ export function Account() {
                         <p className="text-base font-medium text-[#111111] leading-[150%]">
                           {account.name}
                         </p>
-                        <p className="text-sm text-[#111111] leading-[150%]">
+                        <p className="text-sm text-[#111111] leading-[150%] max-[380px]:text-xs">
                           {account.accountNumber} {account.bank}
                         </p>
                       </div>
@@ -227,7 +227,7 @@ export function Account() {
                       onClick={() =>
                         handleCopy(account.accountNumber, account.bank)
                       }
-                      className="px-4 py-1.5 bg-[#E487A7] text-white text-sm rounded-md mr-2 font-semibold"
+                      className="px-4 py-1.5 bg-[#E487A7] text-white text-sm rounded-md mr-2 font-semibold max-[380px]:text-xs max-[380px]:px-3"
                       style={{ fontFamily: "var(--font-gamtan)" }}
                     >
                       {copiedAccount === account.accountNumber
