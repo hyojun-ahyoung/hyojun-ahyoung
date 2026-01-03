@@ -36,7 +36,11 @@ const hour = date.getHours();
 const minute = date.getMinutes();
 const ampm = hour >= 12 ? "오후" : "오전";
 const displayHour = hour > 12 ? hour - 12 : hour;
-const dateStr = `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${minute > 0 ? ` ${minute}분` : ""}`;
+const dateStr = `${date.getFullYear()}년 ${
+  date.getMonth() + 1
+}월 ${date.getDate()}일(${dayOfWeek}) ${ampm} ${displayHour}시${
+  minute > 0 ? ` ${minute}분` : ""
+}`;
 
 export const metadata: Metadata = {
   title: `${groom.fullName}♥${bride.fullName}의 결혼식에 초대합니다.`,
@@ -47,7 +51,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/gallery/5.jpg",
+        url: "/images/gallery/3.jpg",
         width: 900,
         height: 1332,
       },
@@ -55,18 +59,26 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon/android-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      {
+        url: "/favicon/android-icon-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
     ],
     apple: [
-      { url: '/favicon/apple-icon-180x180.png', sizes: '180x180', type: 'image/png' },
+      {
+        url: "/favicon/apple-icon-180x180.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
     ],
     other: [
       {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/favicon/apple-icon-precomposed.png',
+        rel: "apple-touch-icon-precomposed",
+        url: "/favicon/apple-icon-precomposed.png",
       },
     ],
   },
