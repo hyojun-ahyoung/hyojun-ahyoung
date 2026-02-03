@@ -49,7 +49,7 @@ export function DdayCounter() {
               <div
                 className="absolute bottom-0 flex flex-col items-center"
                 style={{
-                  left: `${progress}%`,
+                  left: `${Math.min(progress, 85)}%`,
                   transform: "translateX(calc(-50% - 20px))",
                 }}
               >
@@ -109,12 +109,12 @@ export function DdayCounter() {
           <div
             className="absolute top-0 flex flex-col items-center"
             style={{
-              left: dday === 0 ? "50%" : `${progress}%`,
+              left: dday === 0 ? "50%" : `${Math.min(progress, 90)}%`,
               transform: "translateX(-50%)",
             }}
           >
             <div
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 whitespace-nowrap"
               style={{ fontFamily: "var(--font-hanason)" }}
             >
               <span className="text-2xl text-gray-800">{getDdayText()}</span>
